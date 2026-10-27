@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Learnix — Poster</title>
+<style>
+  @page { size: 420mm 594mm; margin: 0; }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0;
+    width: 420mm;
+    height: 594mm;
+    background: #F5F4F1;
+    font-family: "Arial", "Helvetica", sans-serif;
+    color: #1a1a1a;
+  }
+  .page {
+    width: 420mm;
+    height: 594mm;
+    padding: 16mm 16mm 12mm;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+  }
+  .dotgrid {
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(#1a1a1a11 1.2px, transparent 1.2px);
+    background-size: 14mm 14mm;
+    pointer-events: none;
+  }
+
+  header.top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    border-bottom: 3px solid #7A1F2B;
+    padding-bottom: 8mm;
+    margin-bottom: 10mm;
+    position: relative;
+    z-index: 1;
+  }
+  .brandblock .brand {
+    font-weight: 900;
+    font-size: 52pt;
+    letter-spacing: 1px;
+    color: #7A1F2B;
+    line-height: 1;
+  }
+  .brandblock .tagline {
+    font-size: 15pt;
+    color: #333;
+    margin-top: 4mm;
+    max-width: 320mm;
+    font-weight: 600;
+  }
+  .authorbox {
+    text-align: right;
+    font-size: 11pt;
+    padding-top: 4mm;
+  }
+  .authorbox .name { font-weight: 900; font-size: 14pt; }
+  .authorbox .meta { color: #444; margin-top: 2mm; }
+  .authorbox .kind {
+    display: inline-block;
+    margin-top: 6mm;
+    background: #1a1a1a;
+    color: #fff;
+    font-size: 9.5pt;
+    font-weight: 700;
+    letter-spacing: 1px;
+    padding: 2.5mm 6mm;
+    border-radius: 999px;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: start;
+    align-content: start;
+    gap: 10mm;
+    flex: 1;
+    position: relative;
+    z-index: 1;
+  }
+  .card {
+    background: #fff;
+    border-radius: 7mm;
+    padding: 9mm;
+    box-shadow: 0 1mm 0 rgba(0,0,0,0.04);
+    border: 1px solid #e7e4df;
+  }
+  .card.dark {
+    background: #1a1a1a;
+    color: #F5F4F1;
+    border: none;
+  }
+  .card.oxblood {
+    background: #7A1F2B;
+    color: #fff;
+    border: none;
+  }
+  .card h2 {
+    font-size: 13pt;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 0 0 5mm;
+    color: #7A1F2B;
+  }
+  .card.dark h2, .card.oxblood h2 { color: #fff; opacity: 0.85; }
+  .card p, .card li { font-size: 10.5pt; line-height: 1.5; }
+  .card ul { margin: 0; padding-left: 5mm; }
+  .card li { margin-bottom: 2.5mm; }
+
+  .span2 { grid-column: span 2; }
+  .span3 { grid-column: span 3; }
+  .rowspan2 { grid-row: span 2; }
+
+  .flow {
+    display: flex;
+    align-items: center;
+    gap: 3mm;
+    margin-top: 4mm;
+    flex-wrap: wrap;
+  }
+  .flow .step {
+    background: #faf5f0;
+    border: 1.5px solid #7A1F2B;
+    border-radius: 999px;
+    padding: 2.5mm 5mm;
+    font-size: 9.5pt;
+    font-weight: 700;
+    color: #7A1F2B;
+    white-space: nowrap;
+  }
+  .flow .arrow { font-size: 13pt; color: #7A1F2B; }
+
+  .shot-wrap {
+    border-radius: 5mm;
+    overflow: hidden;
+    border: 1px solid #333;
+    margin-top: 4mm;
+  }
+  .shot-wrap img { width: 100%; display: block; }
+
+  .bigstat { text-align: center; }
+  .bigstat .num { font-size: 30pt; font-weight: 900; color: #7A1F2B; line-height: 1; }
+  .bigstat .label { font-size: 9pt; text-transform: uppercase; letter-spacing: 0.5px; color: #555; margin-top: 2mm; }
+  .statrow { display: flex; justify-content: space-around; margin-top: 4mm; padding: 4mm 0 6mm; }
+  .card.oxblood .bigstat .num { color: #fff; }
+  .card.oxblood .bigstat .label { color: #f3d3d8; }
+
+  .chipgrid { display: flex; flex-wrap: wrap; gap: 2.5mm; margin-top: 3mm; }
+  .chip {
+    background: #f1efe9;
+    border: 1px solid #ddd8ce;
+    border-radius: 999px;
+    padding: 2mm 4.5mm;
+    font-size: 9pt;
+    font-weight: 600;
+  }
+  .card.dark .chip { background: #2a2a2a; border-color: #3a3a3a; color: #eee; }
+
+  footer.bottom {
+    margin-top: 8mm;
+    text-align: center;
+    font-size: 9.5pt;
+    color: #666;
+    position: relative;
+    z-index: 1;
+  }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="dotgrid"></div>
+
+  <header class="top">
+    <div class="brandblock">
+      <div class="brand">LEARNIX</div>
+      <div class="tagline">An explainable, steerable course recommender for degree-program advising</div>
+    </div>
+    <div class="authorbox">
+      <div class="name">Aditya Pradhan</div>
+      <div class="meta">Roll No: 23108A0010</div>
+      <div class="meta">Branch: EXCS A</div>
+      <div class="kind">B.TECH. PROJECT</div>
+    </div>
+  </header>
+
+  <div class="grid">
+
+    <!-- Problem -->
+    <div class="card">
+      <h2>The Problem</h2>
+      <p>Course registration leaves students to manually cross-reference transcripts against prerequisites, guess whether a schedule fits, and judge course relevance to their career with no explainable reasoning and no way to adjust what matters to them.</p>
+      <ul>
+        <li>No ranking by actual career relevance</li>
+        <li>No visibility into prerequisite / schedule conflicts before it's too late</li>
+        <li>Zero explanation — recommendations, where they exist, are a black box</li>
+      </ul>
+    </div>
+
+    <!-- Approach -->
+    <div class="card span2">
+      <h2>Our Approach</h2>
+      <p>A <b>content-based, multi-criteria</b> recommender. Every course and every career target carries the same 5-axis skill vector (ML · Statistics · Systems · Algorithms · Practice). Each eligible course is scored live against the student's actual transcript-derived skills, declared goal, interests, schedule and cost — then explained in plain language.</p>
+      <div class="flow">
+        <span class="step">Transcript</span><span class="arrow">→</span>
+        <span class="step">Skill Vector</span><span class="arrow">→</span>
+        <span class="step">5 Subscores</span><span class="arrow">→</span>
+        <span class="step">Weighted Match %</span><span class="arrow">→</span>
+        <span class="step">Plain-Language Reason</span>
+      </div>
+    </div>
+
+    <!-- Tech stack -->
+    <div class="card dark">
+      <h2>Tech Stack</h2>
+      <div class="chipgrid">
+        <span class="chip">Next.js 16</span>
+        <span class="chip">TypeScript</span>
+        <span class="chip">React 19</span>
+        <span class="chip">Tailwind v4</span>
+        <span class="chip">PostgreSQL</span>
+        <span class="chip">Prisma</span>
+        <span class="chip">Auth.js v5</span>
+        <span class="chip">Zod</span>
+        <span class="chip">Zustand</span>
+        <span class="chip">Vitest</span>
+      </div>
+    </div>
+
+    <!-- Subscores -->
+    <div class="card span2">
+      <h2>Five Explainable Subscores</h2>
+      <ul>
+        <li><b>Goals</b> — skill-vector similarity to the career target, boosted by stated interests.</li>
+        <li><b>Gap</b> — weighted by how far current skills fall short of the target; closing a bigger gap scores higher.</li>
+        <li><b>History</b> — halved if a checkable prerequisite isn't confirmed on the transcript.</li>
+        <li><b>Schedule</b> — discounted if the course eats an outsized share of the weekly time budget.</li>
+        <li><b>Cost</b> — a fixed credit-value score.</li>
+      </ul>
+      <p style="margin-top:4mm"><b>Match % = Σ(subscore × weight) / Σweight</b> — weights are student-adjustable sliders, normalised on every read.</p>
+    </div>
+
+    <!-- Screenshots -->
+    <div class="card">
+      <h2>Home Screen</h2>
+      <p>Best-match hero course with live reasoning, plus a ranked rail of alternatives.</p>
+      <div class="shot-wrap">
+        <img src="assets/03-home.png">
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Explore Screen</h2>
+      <p>Every eligible course, ranked, filterable by department / hours / day.</p>
+      <div class="shot-wrap">
+        <img src="assets/04-explore.png">
+      </div>
+    </div>
+
+    <!-- Key features -->
+    <div class="card">
+      <h2>Key Features</h2>
+      <ul>
+        <li><b>Explore</b> — filterable, sortable by match / rating / workload.</li>
+        <li><b>Compare</b> — two courses side by side across schedule and fit.</li>
+        <li><b>Progress</b> — requirement completion and GPA, derived live.</li>
+        <li><b>Steerable weights</b> — sliders re-rank everything live.</li>
+        <li><b>Conflict detection</b> — saved courses checked for overlap.</li>
+      </ul>
+    </div>
+
+    <!-- Results / stats -->
+    <div class="card oxblood span3">
+      <h2>By the Numbers</h2>
+      <div class="statrow">
+        <div class="bigstat"><div class="num">9</div><div class="label">Student-Facing Screens</div></div>
+        <div class="bigstat"><div class="num">5</div><div class="label">Explainable Subscores</div></div>
+        <div class="bigstat"><div class="num">27</div><div class="label">Passing Unit Tests</div></div>
+        <div class="bigstat"><div class="num">11</div><div class="label">Relational Data Models</div></div>
+        <div class="bigstat"><div class="num">5</div><div class="label">Skill-Vector Axes</div></div>
+      </div>
+    </div>
+
+    <!-- Future scope -->
+    <div class="card">
+      <h2>Future Scope</h2>
+      <ul>
+        <li>Greedy multi-term degree planner across future terms</li>
+        <li>Instructor/section-level grade-distribution signals</li>
+        <li>Collaborative signals layered atop the explainable base</li>
+      </ul>
+    </div>
+
+    <!-- Conclusion -->
+    <div class="card span2">
+      <h2>Conclusion</h2>
+      <p>Learnix shows a recommender can be rigorous <i>and</i> legible — every ranking traces to a named, adjustable signal. No cold-start problem, no black box: a brand-new student gets reasoned recommendations from day one, and can steer the algorithm itself.</p>
+    </div>
+
+  </div>
+
+  <footer class="bottom">Learnix — Explainable, steerable course recommendations · B.Tech. Project</footer>
+</div>
+</body>
+</html>

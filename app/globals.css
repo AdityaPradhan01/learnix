@@ -1,0 +1,216 @@
+@import "tailwindcss";
+
+/* ── Learnix design tokens — "Salt & pepper + Gothic noir" ── */
+/* Source of truth: design_handoff_learnix/README.md */
+:root {
+  --color-salt: #f5f4f1; /* page background */
+  --color-pepper: #e4e3df; /* tiles, cards, pill tracks */
+  --color-ink: #141414; /* text, dark tiles, primary nav pill */
+  --color-charcoal: #2b2b2e; /* ring tracks on dark */
+  --color-graphite: #5e5e63; /* secondary text, >=4.5:1 on salt */
+  --color-silver: #bdbcb8; /* muted text on dark, dotted rules */
+  --color-stone: #d2d1cc; /* inactive step bars, stripes */
+  --color-oxblood: #7a1f2b; /* primary CTA, match rings, highlights */
+  --color-oxblood-hover: #5c1620; /* CTA hover */
+  --color-blush: #f3e4e6; /* text on oxblood */
+  --color-rose: #c9a9ae; /* secondary ring, bullets on dark */
+
+  /* signal colours (score breakdown) */
+  --color-signal-goals: #7a1f2b;
+  --color-signal-gap: #141414;
+  --color-signal-history: #8a8a8f;
+  --color-signal-schedule: #c9a9ae;
+  --color-signal-cost: #d2d1cc;
+
+  --color-bg: var(--color-salt);
+  --color-surface: var(--color-pepper);
+  --color-text: var(--color-ink);
+  --color-accent: var(--color-oxblood);
+  --color-divider: color-mix(in srgb, var(--color-ink) 12%, transparent);
+
+  --color-muted-strong: var(--color-graphite);
+  --color-muted: color-mix(in srgb, var(--color-ink) 55%, transparent);
+  --color-faint: var(--color-silver);
+
+  --font-heading: var(--font-archivo), system-ui, sans-serif;
+  --font-body: var(--font-archivo), system-ui, sans-serif;
+  --font-mono: var(--font-space-mono), ui-monospace, Menlo, monospace;
+
+  --radius-tile: 28px;
+  --radius-hero: 32px;
+  --radius-pill: 999px;
+
+  --shadow-hero: 0 40px 80px -40px rgba(20, 20, 20, 0.5);
+
+  --ease-brand: cubic-bezier(0.2, 0.7, 0.2, 1);
+
+  --dot-grid: radial-gradient(
+    rgba(20, 20, 20, 0.14) 1.2px,
+    transparent 1.6px
+  );
+}
+
+@theme inline {
+  --color-salt: var(--color-salt);
+  --color-pepper: var(--color-pepper);
+  --color-ink: var(--color-ink);
+  --color-charcoal: var(--color-charcoal);
+  --color-graphite: var(--color-graphite);
+  --color-silver: var(--color-silver);
+  --color-stone: var(--color-stone);
+  --color-oxblood: var(--color-oxblood);
+  --color-oxblood-hover: var(--color-oxblood-hover);
+  --color-blush: var(--color-blush);
+  --color-rose: var(--color-rose);
+
+  --color-signal-goals: var(--color-signal-goals);
+  --color-signal-gap: var(--color-signal-gap);
+  --color-signal-history: var(--color-signal-history);
+  --color-signal-schedule: var(--color-signal-schedule);
+  --color-signal-cost: var(--color-signal-cost);
+
+  --color-bg: var(--color-bg);
+  --color-surface: var(--color-surface);
+  --color-text: var(--color-text);
+  --color-accent: var(--color-accent);
+  --color-divider: var(--color-divider);
+
+  --color-muted-strong: var(--color-muted-strong);
+  --color-muted: var(--color-muted);
+  --color-faint: var(--color-faint);
+
+  --font-heading: var(--font-heading);
+  --font-body: var(--font-body);
+  --font-mono: var(--font-mono);
+
+  --radius-tile: var(--radius-tile);
+  --radius-hero: var(--radius-hero);
+  --radius-pill: var(--radius-pill);
+  --radius-none: 0px;
+
+  --shadow-hero: var(--shadow-hero);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+}
+
+body {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.55;
+  font-weight: 400;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  line-height: 1.12;
+  letter-spacing: -0.03em;
+  margin: 0;
+}
+
+.font-mono-label {
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 11px;
+}
+
+/* Shape: tiles/cards are 28px (32-36px hero), buttons/chips/segmented/toasts are pills.
+   No borders on tiles — separation comes from surface colour and whitespace. */
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+}
+
+.tile {
+  border-radius: var(--radius-tile);
+}
+
+.tile-hero {
+  border-radius: var(--radius-hero);
+}
+
+.pill {
+  border-radius: var(--radius-pill);
+}
+
+/* Brand texture: dot grid, usually faded with a radial mask-image. */
+.dot-grid {
+  background-image: var(--dot-grid);
+  background-size: 16px 16px;
+}
+
+.dot-grid-drift {
+  animation: dot-drift 5s linear infinite;
+}
+
+@keyframes dot-drift {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 16px 16px;
+  }
+}
+
+.glow-pulse {
+  animation: glow-pulse 7s var(--ease-brand) infinite;
+}
+
+@keyframes glow-pulse {
+  0%,
+  100% {
+    transform: scale(0.9);
+  }
+  50% {
+    transform: scale(1.15);
+  }
+}
+
+:focus {
+  outline: none;
+}
+:focus-visible {
+  outline: 3px solid var(--color-oxblood);
+  outline-offset: 2px;
+}
+::selection {
+  background: color-mix(in srgb, var(--color-oxblood) 30%, transparent);
+}
+
+input[type="range"] {
+  accent-color: var(--color-oxblood);
+}
+input[type="checkbox"],
+input[type="radio"] {
+  accent-color: var(--color-oxblood);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}

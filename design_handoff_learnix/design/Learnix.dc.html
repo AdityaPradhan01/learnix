@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/modernist-08f65a9b-2a38-4cb3-ae64-307ac9853314/styles.css">
+<script src="_ds/modernist-08f65a9b-2a38-4cb3-ae64-307ac9853314/_ds_bundle.js"></script>
+<script src="canopy-data.js"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap">
+<style>
+:root{--color-bg:#F5F4F1;--color-surface:#E4E3DF;--color-text:#141414;--color-accent:#7A1F2B;--color-divider:rgba(20,20,20,.18);--color-accent-100:#F3E4E6;--color-accent-300:#D9A9B0;--color-accent-700:#7A1F2B;--color-accent-800:#5C1620}
+body{margin:0;background:#F5F4F1}
+a{color:#7A1F2B}a:hover{color:#5C1620}
+:focus-visible{outline:3px solid #7A1F2B;outline-offset:2px}
+button{min-height:40px}
+</style>
+</helmet>
+
+<sc-if value="{{ isLanding }}" hint-placeholder-val="{{ true }}">
+<div style="background:#F5F4F1">
+  <header style="position:sticky;top:0;z-index:6;background:rgba(245,244,241,.78);backdrop-filter:saturate(180%) blur(18px);-webkit-backdrop-filter:saturate(180%) blur(18px)">
+    <div style="max-width:1120px;margin:0 auto;height:56px;padding:0 28px;display:flex;align-items:center;justify-content:space-between">
+      <div style="display:flex;align-items:center;gap:8px"><span style="width:10px;height:10px;border-radius:50%;background:#7A1F2B;display:block"></span><span style="font-family:var(--font-heading);font-weight:800;font-size:17px">Learnix</span></div>
+      <nav aria-label="Site" style="display:flex;gap:32px;font-size:13px;color:#2B2B2E"><span>How it works</span><span>Students</span><span>Advisors</span></nav>
+      <div style="display:flex;gap:10px;align-items:center">
+        <button onClick="{{ goHome }}" style="background:none;border:0;font-size:13px;cursor:pointer;font-family:var(--font-body);color:#141414">Log in</button>
+        <button onClick="{{ goOnboard }}" style="background:#141414;color:#F5F4F1;border:0;border-radius:999px;padding:0 26px;min-height:48px;font-family:var(--font-body);font-weight:600;font-size:15px;cursor:pointer;transition:transform .25s ease,background .25s ease;white-space:nowrap;min-height:34px;padding:0 16px;font-size:13px">Get started</button>
+      </div>
+    </div>
+  </header>
+
+  <section style="padding:120px 28px 0;text-align:center">
+    <div data-anim="up" style="font-family:'Space Mono',ui-monospace,monospace;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#7A1F2B">Spring 2027 · registration opens 14 Oct</div>
+    <h1 data-anim="up" data-delay="120" style="font-size:clamp(48px,8vw,104px);line-height:.98;letter-spacing:-0.04em;margin:22px auto 0;max-width:11ch">Your next term, figured out.</h1>
+    <p data-anim="up" data-delay="240" style="font-size:clamp(18px,2vw,22px);line-height:1.45;color:#5E5E63;max-width:34ch;margin:26px auto 0">Courses picked for your goal, your record and your week, each with the reasons behind it.</p>
+    <div data-anim="up" data-delay="360" style="display:flex;gap:18px;justify-content:center;align-items:center;margin-top:36px;flex-wrap:wrap">
+      <button onClick="{{ goOnboard }}" style="background:#7A1F2B;color:#fff;border:0;border-radius:999px;padding:0 26px;min-height:48px;font-family:var(--font-body);font-weight:600;font-size:15px;cursor:pointer;transition:transform .25s ease,background .25s ease;white-space:nowrap;" style-hover="background:#5C1620;transform:scale(1.04)">Get my courses</button>
+      <button onClick="{{ goHome }}" style="background:none;border:0;font-size:16px;color:#7A1F2B;cursor:pointer;font-family:var(--font-body)">See it in action ›</button>
+    </div>
+
+    <div style="position:relative;max-width:980px;margin:88px auto 0">
+      <div aria-hidden="true" data-anim="drift" style="position:absolute;inset:-60px -40px 80px;background-image:radial-gradient(rgba(20,20,20,.16) 1.2px,transparent 1.6px);background-size:16px 16px;-webkit-mask-image:radial-gradient(ellipse at center,#000 30%,transparent 72%);mask-image:radial-gradient(ellipse at center,#000 30%,transparent 72%)"></div>
+      <div data-anim="rise" data-delay="500" style="position:relative;background:#141414;border-radius:32px 32px 0 0;padding:44px 48px 0;box-shadow:0 40px 80px -30px rgba(20,20,20,.45);text-align:left;color:#F5F4F1;overflow:hidden">
+        <div style="display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:40px;align-items:end">
+          <div style="padding-bottom:44px">
+            <div style="font-family:'Space Mono',ui-monospace,monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#BDBCB8">Best fit for you</div>
+            <div style="font-family:var(--font-heading);font-weight:800;font-size:34px;line-height:1.1;margin-top:12px">Machine Learning Foundations</div>
+            <div style="display:flex;flex-direction:column;gap:10px;margin-top:22px;font-size:15px;color:#E4E3DF">
+              <span data-anim="up" data-delay="1000" style="display:flex;gap:10px;align-items:center"><span style="width:6px;height:6px;border-radius:50%;background:#C9A9AE;display:block"></span>Closes your biggest skill gap</span>
+              <span data-anim="up" data-delay="1150" style="display:flex;gap:10px;align-items:center"><span style="width:6px;height:6px;border-radius:50%;background:#C9A9AE;display:block"></span>You got an A− in its prerequisite</span>
+              <span data-anim="up" data-delay="1300" style="display:flex;gap:10px;align-items:center"><span style="width:6px;height:6px;border-radius:50%;background:#C9A9AE;display:block"></span>Fits your Mon/Wed week</span>
+            </div>
+          </div>
+          <div data-anim="rise" data-delay="750" style="background:#7A1F2B;border-radius:24px 24px 0 0;padding:32px 30px 40px;align-self:end">
+            <div style="font-family:'Space Mono',ui-monospace,monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#F3E4E6">Match</div>
+            <div style="font-family:var(--font-heading);font-weight:800;font-size:96px;line-height:.9;letter-spacing:-0.04em;margin-top:6px"><span data-anim="count" data-to="92" data-delay="800">92</span><span style="font-size:40px">%</span></div>
+            <div style="font-size:14px;color:#F3E4E6;margin-top:12px">4.5 ★ · 18 seats left</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="background:#141414;color:#F5F4F1;padding:140px 28px;text-align:center;position:relative;overflow:hidden">
+    <div aria-hidden="true" data-anim="pulse" style="position:absolute;left:50%;top:50%;width:560px;height:560px;margin:-280px 0 0 -280px;border-radius:50%;background:radial-gradient(circle,rgba(122,31,43,.55),transparent 65%)"></div>
+    <div style="position:relative">
+      <div data-anim="up" style="font-family:'Space Mono',ui-monospace,monospace;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#BDBCB8">No black boxes</div>
+      <h2 data-anim="up" data-delay="120" style="font-size:clamp(40px,6vw,76px);line-height:1.02;letter-spacing:-0.035em;color:#F5F4F1;margin:20px auto 0;max-width:14ch">Every pick tells you why.</h2>
+      <p data-anim="up" data-delay="240" style="font-size:19px;line-height:1.5;color:#BDBCB8;max-width:40ch;margin:24px auto 0">See how your goal, grades and schedule shaped each score. Then decide what matters most to you.</p>
+    </div>
+  </section>
+
+  <section style="max-width:1120px;margin:0 auto;padding:120px 28px 40px">
+    <h2 data-anim="up" style="font-size:clamp(34px,4.4vw,56px);letter-spacing:-0.03em;line-height:1.05;margin:0;max-width:16ch">Built around you, not the catalogue.</h2>
+    <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;margin-top:56px">
+      <div data-anim="up" data-delay="0" style-hover="transform:translateY(-8px)" style="transition:transform .45s cubic-bezier(.2,.7,.2,1);background:#E4E3DF;border-radius:28px;padding:36px 32px;min-height:340px;display:flex;flex-direction:column;justify-content:space-between">
+        <div style="font-family:'Space Mono',ui-monospace,monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#5E5E63">01 · Goal</div>
+        <div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:28px"><span style="background:#141414;color:#F5F4F1;border-radius:999px;padding:8px 14px;font-size:13px">ML Engineer</span><span style="background:#F5F4F1;border-radius:999px;padding:8px 14px;font-size:13px">Data Scientist</span><span style="background:#F5F4F1;border-radius:999px;padding:8px 14px;font-size:13px">Researcher</span></div>
+          <h3 style="font-size:26px;letter-spacing:-0.02em;margin:0">Tuned to where you're headed.</h3>
+        </div>
+      </div>
+      <div data-anim="up" data-delay="150" style-hover="transform:translateY(-8px)" style="transition:transform .45s cubic-bezier(.2,.7,.2,1);background:#141414;color:#F5F4F1;border-radius:28px;padding:36px 32px;min-height:340px;display:flex;flex-direction:column;justify-content:space-between">
+        <div style="font-family:'Space Mono',ui-monospace,monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#BDBCB8">02 · Record</div>
+        <div>
+          <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:28px">
+            <div style="display:flex;justify-content:space-between;font-size:13px;color:#BDBCB8"><span>Algorithms</span><span>55 / 70</span></div>
+            <div style="height:6px;border-radius:3px;background:#2B2B2E;position:relative"><div style="position:absolute;left:0;top:0;bottom:0;width:55%;border-radius:3px;background:#F5F4F1" data-anim="grow" data-delay="400"></div></div>
+            <div style="display:flex;justify-content:space-between;font-size:13px;color:#BDBCB8;margin-top:6px"><span>Machine learning</span><span>10 / 95</span></div>
+            <div style="height:6px;border-radius:3px;background:#2B2B2E;position:relative"><div style="position:absolute;left:0;top:0;bottom:0;width:10%;border-radius:3px;background:#C9A9AE" data-anim="grow" data-delay="550"></div></div>
+          </div>
+          <h3 style="font-size:26px;letter-spacing:-0.02em;margin:0;color:#F5F4F1">It knows what you've already done.</h3>
+        </div>
+      </div>
+      <div data-anim="up" data-delay="300" style-hover="transform:translateY(-8px)" style="transition:transform .45s cubic-bezier(.2,.7,.2,1);background:#7A1F2B;color:#fff;border-radius:28px;padding:36px 32px;min-height:340px;display:flex;flex-direction:column;justify-content:space-between">
+        <div style="font-family:'Space Mono',ui-monospace,monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#F3E4E6">03 · Week</div>
+        <div>
+          <div style="display:flex;gap:8px;align-items:flex-end;height:80px;margin-bottom:28px">
+            <span data-anim="grow" data-axis="y" style="flex:1;transform-origin:bottom;height:70%;border-radius:8px;background:rgba(255,255,255,.9);display:block"></span><span data-anim="grow" data-axis="y" style="flex:1;transform-origin:bottom;height:45%;border-radius:8px;background:rgba(255,255,255,.9);display:block"></span><span data-anim="grow" data-axis="y" style="flex:1;transform-origin:bottom;height:70%;border-radius:8px;background:rgba(255,255,255,.9);display:block"></span><span data-anim="grow" data-axis="y" style="flex:1;transform-origin:bottom;height:45%;border-radius:8px;background:rgba(255,255,255,.9);display:block"></span><span data-anim="grow" data-axis="y" style="flex:1;transform-origin:bottom;height:100%;border-radius:8px;background:repeating-linear-gradient(45deg,rgba(255,255,255,.25) 0 5px,transparent 5px 10px);display:block"></span>
+          </div>
+          <h3 style="font-size:26px;letter-spacing:-0.02em;margin:0;color:#fff">And it fits your week.</h3>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding:120px 28px 140px;text-align:center">
+    <h2 data-anim="up" style="font-size:clamp(40px,6vw,76px);line-height:1.02;letter-spacing:-0.035em;margin:0 auto;max-width:13ch">Two minutes to a better term.</h2>
+    <p data-anim="up" data-delay="120" style="font-size:19px;color:#5E5E63;margin:22px auto 0;max-width:36ch">Your transcript is already connected. Just tell us where you're going.</p>
+    <button onClick="{{ goOnboard }}" style="background:#141414;color:#F5F4F1;border:0;border-radius:999px;padding:0 26px;min-height:48px;font-family:var(--font-body);font-weight:600;font-size:15px;cursor:pointer;transition:transform .25s ease,background .25s ease;white-space:nowrap;margin-top:34px" style-hover="background:#7A1F2B;transform:scale(1.04)">Get started</button>
+  </section>
+
+  <footer style="max-width:1120px;margin:0 auto;padding:28px;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;font-size:12px;color:#5E5E63;border-top:1px solid rgba(20,20,20,.12)">
+    <span>Learnix · Course advising for your university</span><span style="display:flex;gap:22px"><span>Privacy</span><span>Accessibility</span><span>Help</span></span>
+  </footer>
+</div>
+</sc-if>
+
+<sc-if value="{{ isApp }}" hint-placeholder-val="{{ false }}">
+<header style="position:sticky;top:0;z-index:6;background:rgba(245,244,241,.8);backdrop-filter:saturate(180%) blur(18px);-webkit-backdrop-filter:saturate(180%) blur(18px)">
+  <div style="max-width:1120px;margin:0 auto;height:64px;padding:0 28px;display:flex;align-items:center;justify-content:space-between">
+    <button onClick="{{ goLanding }}" style="display:flex;align-items:center;gap:8px;background:none;border:0;padding:0;cursor:pointer"><span style="width:10px;height:10px;border-radius:50%;background:#7A1F2B;display:block"></span><span style="font-family:var(--font-heading);font-weight:800;font-size:17px;color:#141414">Learnix</span></button>
+    <nav aria-label="Main" style="display:flex;gap:4px;background:#E4E3DF;border-radius:999px;padding:4px">
+      <sc-for list="{{ nav }}" as="n" hint-placeholder-count="4">
+        <button onClick="{{ n.go }}" aria-current="{{ n.current }}" style="background:{{ n.edge }};color:{{ n.fg }};border:0;border-radius:999px;padding:0 18px;min-height:36px;font-family:var(--font-body);font-size:13px;cursor:pointer;transition:background .3s ease">{{ n.label }}</button>
+      </sc-for>
+    </nav>
+    <div style="display:flex;align-items:center;gap:10px">
+      <button onClick="{{ goNotif }}" aria-label="{{ bellLabel }}" style="position:relative;background:#E4E3DF;border:0;border-radius:50%;width:40px;height:40px;cursor:pointer">
+        <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="#141414" stroke-width="2" style="display:block;margin:auto"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"></path><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"></path></svg>
+        <sc-if value="{{ hasUnread }}" hint-placeholder-val="{{ true }}"><span style="position:absolute;top:2px;right:2px;width:10px;height:10px;border-radius:50%;background:#7A1F2B;border:2px solid #F5F4F1;display:block"></span></sc-if>
+      </button>
+      <button onClick="{{ goProfile }}" aria-label="Profile and settings" style="width:40px;height:40px;border-radius:50%;background:#141414;color:#F5F4F1;border:0;font-family:var(--font-heading);font-weight:800;font-size:12px;cursor:pointer">RA</button>
+    </div>
+  </div>
+</header>
+</sc-if>
+
+<sc-if value="{{ isOnboard }}" hint-placeholder-val="{{ false }}">
+<div style="min-height:100vh;display:flex;flex-direction:column;position:relative;overflow:hidden">
+  <div aria-hidden="true" data-anim="drift" style="position:absolute;inset:0;background-image:radial-gradient(rgba(20,20,20,.12) 1.2px,transparent 1.6px);background-size:18px 18px;-webkit-mask-image:radial-gradient(ellipse at 50% 20%,#000 10%,transparent 60%);mask-image:radial-gradient(ellipse at 50% 20%,#000 10%,transparent 60%)"></div>
+  <div style="position:relative;max-width:1120px;width:100%;margin:0 auto;padding:22px 28px;display:flex;justify-content:space-between;align-items:center;box-sizing:border-box">
+    <button onClick="{{ goLanding }}" style="display:flex;align-items:center;gap:8px;background:none;border:0;padding:0;cursor:pointer"><span style="width:10px;height:10px;border-radius:50%;background:#7A1F2B;display:block"></span><span style="font-family:var(--font-heading);font-weight:800;font-size:17px">Learnix</span></button>
+    <div style="display:flex;gap:8px" aria-hidden="true"><sc-for list="{{ stepBars }}" as="b" hint-placeholder-count="4"><span style="width:28px;height:6px;border-radius:3px;background:{{ b.bg }};display:block;transition:background .4s ease"></span></sc-for></div>
+    <button onClick="{{ goHome }}" style="background:none;border:0;font-size:14px;color:#5E5E63;cursor:pointer;font-family:var(--font-body)">Skip</button>
+  </div>
+  <div style="position:relative;flex:1;display:flex;flex-direction:column;align-items:center;text-align:center;padding:48px 28px 40px">
+    <div data-anim="up" style="font-family:'Space Mono',ui-monospace,monospace;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#7A1F2B">Step {{ step }} of 4</div>
+    <h1 data-anim="up" data-delay="100" style="font-size:clamp(40px,6vw,72px);line-height:1;letter-spacing:-0.04em;margin:18px 0 14px;max-width:14ch">{{ stepTitle }}</h1>
+    <p data-anim="up" data-delay="200" style="font-size:18px;color:#5E5E63;margin:0 0 44px;max-width:40ch">{{ stepHint }}</p>
+
+    <sc-if value="{{ step1 }}" hint-placeholder-val="{{ true }}">
+    <div data-anim="up" data-delay="300" style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;max-width:820px;width:100%">
+      <sc-for list="{{ careerGlyphs }}" as="c" hint-placeholder-count="6">
+        <button onClick="{{ c.pick }}" aria-pressed="{{ c.pressed }}" style="background:{{ c.bg }};color:{{ c.fg }};border:0;border-radius:24px;padding:26px 22px;text-align:left;cursor:pointer;font-family:var(--font-body);display:flex;flex-direction:column;gap:30px;transition:transform .35s cubic-bezier(.2,.7,.2,1),background .3s ease" style-hover="transform:translateY(-4px)">
+          <span aria-hidden="true" style="width:40px;height:40px;border-radius:{{ c.shape }};background:{{ c.shapeBg }};display:block;transition:background .3s ease"></span>
+          <span><span style="display:block;font-family:var(--font-heading);font-weight:800;font-size:17px">{{ c.name }}</span><span style="display:block;font-size:13px;opacity:.7;margin-top:4px">{{ c.desc }}</span></span>
+        </button>
+      </sc-for>
+    </div>
+    </sc-if>
+
+    <sc-if value="{{ step2 }}" hint-placeholder-val="{{ false }}">
+    <div data-anim="up" data-delay="300" style="display:flex;flex-wrap:wrap;justify-content:center;gap:12px;max-width:720px">
+      <sc-for list="{{ interests }}" as="t" hint-placeholder-count="10">
+        <button onClick="{{ t.toggle }}" aria-pressed="{{ t.pressed }}" style="border-radius:999px;padding:0 22px;min-height:52px;font-size:16px;background:{{ t.bg }};color:{{ t.fg }};border:2px solid {{ t.edge }};cursor:pointer;font-family:var(--font-body);transition:all .25s ease">{{ t.name }}</button>
+      </sc-for>
+    </div>
+    </sc-if>
+
+    <sc-if value="{{ step3 }}" hint-placeholder-val="{{ false }}">
+    <div data-anim="up" data-delay="300" style="display:flex;flex-wrap:wrap;justify-content:center;gap:12px;max-width:820px">
+      <sc-for list="{{ pastPills }}" as="p" hint-placeholder-count="6">
+        <button onClick="{{ p.toggle }}" aria-pressed="{{ p.pressed }}" style="display:flex;align-items:center;gap:12px;border-radius:999px;padding:0 8px 0 20px;min-height:56px;background:{{ p.bg }};color:{{ p.fg }};border:2px solid {{ p.edge }};cursor:pointer;font-family:var(--font-body);font-size:15px;transition:all .25s ease">{{ p.name }}<span style="width:40px;height:40px;border-radius:50%;background:rgba(127,127,127,.18);display:flex;align-items:center;justify-content:center;font-family:var(--font-heading);font-weight:800;font-size:13px">{{ p.grade }}</span></button>
+      </sc-for>
+    </div>
+    <div style="font-size:14px;color:#5E5E63;margin-top:22px">Imported from your transcript. Tap any course to remove it.</div>
+    </sc-if>
+
+    <sc-if value="{{ step4 }}" hint-placeholder-val="{{ false }}">
+    <div data-anim="up" data-delay="300" style="display:flex;flex-direction:column;align-items:center;gap:28px">
+      <div style="position:relative;width:220px;height:220px;flex:none"><svg viewBox="0 0 64 64" aria-hidden="true" style="width:100%;height:100%;display:block;transform:rotate(-90deg)"><circle cx="32" cy="32" r="26" fill="none" stroke="#E4E3DF" stroke-width="5"></circle><circle data-anim="ring" cx="32" cy="32" r="26" fill="none" stroke="#7A1F2B" stroke-width="5" stroke-linecap="round" stroke-dasharray="{{ hoursDash }}"></circle></svg><div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center"><span style="font-family:var(--font-heading);font-weight:800;font-size:64px;letter-spacing:-0.04em;line-height:1">{{ hours }}</span><span style="font-size:14px;color:#5E5E63">hours a week</span></div></div>
+      <input type="range" min="12" max="50" value="{{ hours }}" onChange="{{ setHours }}" aria-label="Study hours per week" style="width:320px;accent-color:#7A1F2B">
+      <div><div style="font-size:14px;color:#5E5E63;margin-bottom:12px">Days you can't come in</div>
+        <div style="display:flex;gap:10px;justify-content:center"><sc-for list="{{ days }}" as="d" hint-placeholder-count="5"><button onClick="{{ d.toggle }}" aria-pressed="{{ d.pressed }}" style="width:56px;height:56px;border-radius:50%;font-size:14px;background:{{ d.bg }};color:{{ d.fg }};border:2px solid {{ d.edge }};cursor:pointer;font-family:var(--font-body);transition:all .25s ease">{{ d.name }}</button></sc-for></div>
+      </div>
+    </div>
+    </sc-if>
+
+    <div style="display:flex;flex-direction:column;align-items:center;gap:16px;margin-top:auto;padding-top:48px">
+      <div style="display:flex;gap:18px;align-items:center">
+        <sc-if value="{{ canBack }}" hint-placeholder-val="{{ false }}"><button onClick="{{ stepBack }}" style="background:none;border:0;font-size:15px;color:#5E5E63;cursor:pointer;font-family:var(--font-body)">‹ Back</button></sc-if>
+        <button onClick="{{ stepNext }}" style="background:#141414;color:#F5F4F1;border:0;border-radius:999px;padding:0 26px;min-height:48px;font-family:var(--font-body);font-weight:600;font-size:15px;cursor:pointer;transition:transform .25s ease,background .25s ease;white-space:nowrap;min-width:200px" style-hover="background:#7A1F2B;transform:scale(1.04)">{{ stepNextLabel }}</button>
+      </div>
+      <div aria-live="polite" style="font-family:'Space Mono',ui-monospace,monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#5E5E63"><span style="color:#7A1F2B">{{ matchCount }}</span> courses match so far</div>
+    </div>
+  </div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isHome }}" hint-placeholder-val="{{ false }}">
+<main style="zoom:{{ zoom }}">
+  <section style="text-align:center;padding:80px 28px 56px">
+    <div data-anim="up" style="font-family:'Space Mono',ui-monospace,monospace;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#7A1F2B">Spring 2027 · {{ careerName }}</div>
+    <h1 data-anim="up" data-delay="100" style="font-size:clamp(44px,7vw,88px);line-height:.98;letter-spacing:-0.04em;margin:18px auto 0;max-width:12ch">Good morning, {{ firstName }}.</h1>
+    <p data-anim="up" data-delay="200" style="font-size:20px;color:#5E5E63;margin:20px auto 0;max-width:36ch">We found {{ matchCount }} courses that fit you. Here's the one we'd start with.</p>
+  </section>
+
+  <sc-if value="{{ hasBest }}" hint-placeholder-val="{{ true }}">
+  <section style="max-width:1040px;margin:0 auto;padding:0 28px">
+    <div data-anim="rise" data-delay="300" style="background:#141414;color:#F5F4F1;border-radius:36px;display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);overflow:hidden;box-shadow:0 40px 80px -40px rgba(20,20,20,.5)">
+      <div style="padding:48px">
+        <div style="font-family:'Space Mono',ui-monospace,monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#BDBCB8">Best fit · {{ best.code }}</div>
+        <h2 style="font-size:40px;line-height:1.05;letter-spacing:-0.03em;color:#F5F4F1;margin:14px 0 0">{{ best.name }}</h2>
+        <ul style="list-style:none;padding:0;margin:28px 0 0;display:flex;flex-direction:column;gap:12px">
+          <sc-for list="{{ best.reasons }}" as="r" hint-placeholder-count="3"><li style="display:flex;gap:12px;align-items:center;font-size:15px;color:#E4E3DF"><span style="width:7px;height:7px;border-radius:50%;background:#C9A9AE;display:block;flex:none"></span>{{ r.text }}</li></sc-for>
+        </ul>
+        <div style="display:flex;gap:12px;margin-top:36px;flex-wrap:wrap">
+          <button onClick="{{ best.open }}" style="background:#F5F4F1;color:#141414;border:0;border-radius:999px;padding:0 26px;min-height:48px;font-family:var(--font-body);font-weight:600;font-size:15px;cursor:pointer;transition:transform .25s ease,background .25s ease;white-space:nowrap;" style-hover="transform:scale(1.04)">Learn more</button>
+          <button onClick="{{ best.toggleSave }}" aria-pressed="{{ best.savePressed }}" style="background:transparent;color:#F5F4F1;border:0;border-radius:999px;padding:0 26px;min-height:48px;font-family:var(--font-body);font-weight:600;font-size:15px;cursor:pointer;transition:transform .25s ease,background .25s ease;white-space:nowrap;border:1.5px solid rgba(245,244,241,.4)">{{ best.saveIcon }} {{ best.saveLabel }}</button>
+        </div>
+      </div>
+      <div style="background:#7A1F2B;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px;gap:18px">
+        <div style="position:relative;width:200px;height:200px;flex:none"><svg viewBox="0 0 64 64" aria-hidden="true" style="width:100%;height:100%;display:block;transform:rotate(-90deg)"><circle cx="32" cy="32" r="26" fill="none" stroke="rgba(255,255,255,.18)" stroke-width="4"></circle><circle data-anim="ring" cx="32" cy="32" r="26" fill="none" stroke="#F5F4F1" stroke-width="4" stroke-linecap="round" stroke-dasharray="{{ best.dash }}"></circle></svg><div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center"><span style="font-family:var(--font-heading);font-weight:800;font-size:60px;letter-spacing:-0.04em;line-height:1;color:#fff">{{ best.pct }}%</span><span style="font-size:13px;color:#F3E4E6">match</span></div></div>
+        <div style="font-size:14px;color:#F3E4E6">{{ best.ratingLabel }} ★ · {{ best.seatsLabel }}</div>
+      </div>
+    </div>
+  </section>
+  </sc-if>
+
+  <section style="max-width:1040px;margin:0 auto;padding:20px 28px 0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px">
+    <button onClick="{{ goNotif }}" data-anim="up" data-delay="0" style="background:#E4E3DF;border:0;border-radius:28px;padding:32px;text-align:left;cursor:pointer;font-family:var(--font-body);color:#141414;min-height:280px;display:flex;flex-direction:column;justify-content:space-between;transition:transform .45s cubic-bezier(.2,.7,.2,1)" style-hover="transform:translateY(-6px)">
+      <span style="font-family:'Space Mono',ui-monospace,monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#5E5E63">Registration</span>
+      <span><span style="display:block;font-family:var(--font-heading);font-weight:800;font-size:96px;line-height:.85;letter-spacing:-0.05em;color:#7A1F2B">{{ deadlineDays }}</span><span style="display:block;font-size:17px;margin-top:10px">days to go · opens {{ nextDeadline.day }} {{ nextDeadline.mon }}</span></span>
+    </button>
+    <button onClick="{{ goProgress }}" data-anim="up" data-delay="120" style="background:#F5F4F1;border:1.5px solid rgba(20,20,20,.1);border-radius:28px;padding:32px;text-align:left;cursor:pointer;font-family:var(--font-body);color:#141414;min-height:280px;display:flex;flex-direction:column;justify-content:space-between;transition:transform .45s cubic-bezier(.2,.7,.2,1)" style-hover="transform:translateY(-6px)">
+      <span style="font-family:'Space Mono',ui-monospace,monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#5E5E63">Biggest gap</span>
+      <span style="display:flex;align-items:center;gap:20px">
+        <div style="position:relative;width:110px;height:110px;flex:none"><svg viewBox="0 0 64 64" aria-hidden="true" style="width:100%;height:100%;display:block;transform:rotate(-90deg)"><circle cx="32" cy="32" r="26" fill="none" stroke="#E4E3DF" stroke-width="6"></circle><circle data-anim="ring" cx="32" cy="32" r="26" fill="none" stroke="#141414" stroke-width="6" stroke-linecap="round" stroke-dasharray="{{ tg.haveDash }}"></circle></svg><div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center"><span style="font-family:var(--font-heading);font-weight:800;font-size:24px">{{ tg.have }}</span><span style="font-size:11px;color:#5E5E63">of {{ tg.target }}</span></div></div>
+        <span style="font-size:17px;line-height:1.3">{{ tg.name }}</span>
+      </span>
+    </button>
+    <button onClick="{{ goSaved }}" data-anim="up" data-delay="240" style="background:#141414;border:0;border-radius:28px;padding:32px;text-align:left;cursor:pointer;font-family:var(--font-body);color:#F5F4F1;min-height:280px;display:flex;flex-direction:column;justify-content:space-between;transition:transform .45s cubic-bezier(.2,.7,.2,1)" style-hover="transform:translateY(-6px)">
+      <span style="font-family:'Space Mono',ui-monospace,monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#BDBCB8">Saved</span>
+      <span style="display:flex;align-items:center;gap:20px">
+        <div style="position:relative;width:110px;height:110px;flex:none"><svg viewBox="0 0 64 64" aria-hidden="true" style="width:100%;height:100%;display:block;transform:rotate(-90deg)"><circle cx="32" cy="32" r="26" fill="none" stroke="#2B2B2E" stroke-width="6"></circle><circle data-anim="ring" cx="32" cy="32" r="26" fill="none" stroke="#C9A9AE" stroke-width="6" stroke-linecap="round" stroke-dasharray="{{ savedDash }}"></circle></svg><div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center"><span style="font-family:var(--font-heading);font-weight:800;font-size:24px">{{ savedHours }}h</span><span style="font-size:11px;color:#BDBCB8">of {{ hoursBudget }}</span></div></div>
+        <span style="font-size:17px;line-height:1.3">{{ savedCount }} courses in your week</span>
+      </span>
+    </button>
+  </section>
+
+  <section style="max-width:1040px;margin:0 auto;padding:88px 28px 100px">
+    <div style="display:flex;justify-content:space-between;align-items:baseline;gap:20px">
+      <h2 data-anim="up" style="font-size:clamp(30px,4vw,48px);letter-spacing:-0.03em;margin:0">More for you.</h2>
+      <button onClick="{{ goExplore }}" style="background:none;border:0;font-size:16px;color:#7A1F2B;cursor:pointer;font-family:var(--font-body)">See all ›</button>
+    </div>
+    <div style="display:flex;gap:18px;overflow-x:auto;margin-top:28px;padding-bottom:16px;scroll-snap-type:x mandatory">
+      <sc-for list="{{ moreFits }}" as="c" hint-placeholder-count="4">
+        <article data-anim="up" style="flex:none;width:280px;scroll-snap-align:start;background:#E4E3DF;border-radius:28px;padding:26px;display:flex;flex-direction:column;gap:18px;transition:transform .45s cubic-bezier(.2,.7,.2,1)" style-hover="transform:translateY(-6px)">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start">
+            <div style="position:relative;width:64px;height:64px;flex:none"><svg viewBox="0 0 64 64" aria-hidden="true" style="width:100%;height:100%;display:block;transform:rotate(-90deg)"><circle cx="32" cy="32" r="26" fill="none" stroke="#F5F4F1" stroke-width="6"></circle><circle data-anim="ring" cx="32" cy="32" r="26" fill="none" stroke="#7A1F2B" stroke-width="6" stroke-linecap="round" stroke-dasharray="{{ c.dash }}"></circle></svg><div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center"><span style="font-family:var(--font-heading);font-weight:800;font-size:15px">{{ c.pct }}</span></div></div>
+            <button onClick="{{ c.toggleSave }}" aria-pressed="{{ c.savePressed }}" aria-label="Save {{ c.name }}" style="width:44px;height:44px;border-radius:50%;background:{{ c.saveBg }};color:{{ c.saveFg }};border:0;font-size:17px;cursor:pointer">{{ c.saveIcon }}</button>
+          </div>
+          <button onClick="{{ c.open }}" style="background:none;border:0;padding:0;text-align:left;cursor:pointer;font-family:var(--font-body);color:#141414">
+            <span style="display:block;font-family:var(--font-heading);font-weight:800;font-size:20px;line-height:1.15;letter-spacing:-0.01em">{{ c.name }}</span>
+            <span style="display:block;font-size:14px;color:#5E5E63;margin-top:8px;line-height:1.4">{{ c.reason }}</span>
+          </button>
+        </article>
+      </sc-for>
+    </div>
+  </section>
+</main>
+</sc-if>
+
+<sc-if value="{{ isExplore }}" hint-placeholder-val="{{ false }}">
+<main style="zoom:{{ zoom }}">
+  <section style="text-align:center;padding:80px 28px 40px">
+    <h1 data-anim="up" style="font-size:clamp(44px,7vw,88px);letter-spacing:-0.04em;line-height:1;margin:0">Explore.</h1>
+    <p data-anim="up" data-delay="100" style="font-size:20px;color:#5E5E63;margin:16px 0 0">Every Spring 2027 course, ranked for you.</p>
+    <div data-anim="up" data-delay="200" style="max-width:640px;margin:36px auto 0;display:flex;align-items:center;gap:12px;background:#fff;border-radius:999px;padding:0 24px;height:64px;box-shadow:0 20px 50px -30px rgba(20,20,20,.35)">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#5E5E63" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-4-4"></path></svg>
+      <input value="{{ query }}" onChange="{{ setQuery }}" aria-label="Search courses" placeholder="Search courses, codes or instructors" style="flex:1;border:0;background:transparent;font-size:17px;height:100%;font-family:var(--font-body);outline-offset:6px">
+    </div>
+  </section>
+
+  <section data-anim="up" data-delay="300" style="max-width:1040px;margin:0 auto;padding:0 28px;display:flex;flex-direction:column;align-items:center;gap:14px">
+    <div role="group" aria-label="Department" style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center">
+      <sc-for list="{{ deptPills }}" as="o" hint-placeholder-count="4"><button onClick="{{ o.toggle }}" aria-pressed="{{ o.pressed }}" style="border-radius:999px;padding:0 16px;min-height:40px;font-size:14px;background:{{ o.bg }};color:{{ o.fg }};border:1.5px solid {{ o.edge }};cursor:pointer;font-family:var(--font-body);transition:all .25s ease">{{ o.name }}</button></sc-for>
+      <span style="width:1px;background:rgba(20,20,20,.15);margin:4px 6px"></span>
+      <sc-for list="{{ dayPills }}" as="o" hint-placeholder-count="5"><button onClick="{{ o.toggle }}" aria-pressed="{{ o.pressed }}" style="border-radius:999px;padding:0 16px;min-height:40px;font-size:14px;background:{{ o.bg }};color:{{ o.fg }};border:1.5px solid {{ o.edge }};cursor:pointer;font-family:var(--font-body);transition:all .25s ease">{{ o.name }}</button></sc-for>
+    </div>
+    <div style="display:flex;gap:20px;align-items:center;flex-wrap:wrap;justify-content:center">
+      <label style="display:flex;align-items:center;gap:12px;font-size:14px;color:#5E5E63;background:#E4E3DF;border-radius:999px;padding:0 18px;min-height:40px">Up to <strong style="color:#141414;min-width:32px">{{ fMaxHrs }} h</strong><input type="range" min="4" max="14" value="{{ fMaxHrs }}" onChange="{{ setFMaxHrs }}" aria-label="Maximum weekly hours" style="width:120px;accent-color:#7A1F2B"></label>
+      <div role="group" aria-label="Sort" style="display:flex;background:#E4E3DF;border-radius:999px;padding:4px;gap:4px">
+        <sc-for list="{{ sortPills }}" as="o" hint-placeholder-count="3"><button onClick="{{ o.pick }}" aria-pressed="{{ o.pressed }}" style="border-radius:999px;padding:0 14px;min-height:32px;font-size:13px;background:{{ o.bg }};color:{{ o.fg }};border:0;cursor:pointer;font-family:var(--font-body)">{{ o.name }}</button></sc-for>
+      </div>
+    </div>
+    <div aria-live="polite" style="font-family:'Space Mono',ui-monospace,monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#5E5E63;display:flex;gap:14px;align-items:center">{{ resultCount }} courses<sc-if value="{{ hasFilters }}" hint-placeholder-val="{{ false }}"><button onClick="{{ clearFilters }}" style="background:none;border:0;font-size:15px;color:#7A1F2B;cursor:pointer;font-family:var(--font-body);font-size:12px;font-family:'Space Mono',ui-monospace,monospace;letter-spacing:.14em;text-transform:uppercase;min-height:0">Clear</button></sc-if></div>
+  </section>
+
+  <section style="max-width:1040px;margin:0 auto;padding:36px 28px 100px;display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px">
+    <sc-for list="{{ results }}" as="c" hint-placeholder-count="6">
+      <article data-anim="up" style="background:#E4E3DF;border-radius:28px;padding:26px;display:flex;flex-direction:column;gap:18px;transition:transform .45s cubic-bezier(.2,.7,.2,1)" style-hover="transform:translateY(-6px)">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start">
+          <div style="position:relative;width:72px;height:72px;flex:none"><svg viewBox="0 0 64 64" aria-hidden="true" style="width:100%;height:100%;display:block;transform:rotate(-90deg)"><circle cx="32" cy="32" r="26" fill="none" stroke="#F5F4F1" stroke-width="6"></circle><circle data-anim="ring" cx="32" cy="32" r="26" fill="none" stroke="#7A1F2B" stroke-width="6" stroke-linecap="round" stroke-dasharray="{{ c.dash }}"></circle></svg><div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center"><span style="font-family:var(--font-heading);font-weight:800;font-size:17px">{{ c.pct }}</span></div></div>
+          <button onClick="{{ c.toggleSave }}" aria-pressed="{{ c.savePressed }}" aria-label="Save {{ c.name }}" style="width:44px;height:44px;border-radius:50%;background:{{ c.saveBg }};color:{{ c.saveFg }};border:0;font-size:17px;cursor:pointer">{{ c.saveIcon }}</button>
+        </div>
+        <button onClick="{{ c.open }}" style="background:none;border:0;padding:0;text-align:left;cursor:pointer;font-family:var(--font-body);color:#141414">
+          <span style="display:block;font-family:'Space Mono',ui-monospace,monospace;font-size:11px;letter-spacing:.14em;color:#5E5E63">{{ c.code }}</span>
+          <span style="display:block;font-family:var(--font-heading);font-weight:800;font-size:21px;line-height:1.15;letter-spacing:-0.01em;margin-top:6px">{{ c.name }}</span>
+          <span style="display:block;font-size:14px;color:#5E5E63;margin-top:6px">{{ c.inst.name }}</span>
+        </button>
+        <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:auto">
+          <span style="background:#F5F4F1;border-radius:999px;padding:6px 12px;font-size:13px">★ {{ c.ratingLabel }}</span>
+          <span style="background:#F5F4F1;border-radius:999px;padding:6px 12px;font-size:13px">{{ c.hrs }} h/wk</span>
+          <span style="background:#F5F4F1;border-radius:999px;padding:6px 12px;font-size:13px;color:{{ c.seatsColor }}">{{ c.seats }} seats</span>
+        </div>
+      </article>
+    </sc-for>
+    <sc-if value="{{ noResults }}" hint-placeholder-val="{{ false }}">
+      <div style="grid-column:1/-1;text-align:center;padding:60px 0"><div aria-hidden="true" style="width:120px;height:120px;border-radius:50%;margin:0 auto 24px;background-image:radial-gradient(rgba(20,20,20,.3) 1.5px,transparent 2px);background-size:12px 12px"></div><h2 style="font-size:28px;letter-spacing:-0.02em;margin:0">Nothing matches that.</h2><p style="color:#5E5E63;margin:10px 0 22px">Try fewer filters.</p><button onClick="{{ clearFilters }}" style="background:#141414;color:#F5F4F1;border:0;border-radius:999px;padding:0 26px;min-height:48px;font-family:var(--font-body);font-weight:600;font-size:15px;cursor:pointer;transition:transform .25s ease,background .25s ease;white-space:nowrap;">Clear filters</button></div>
+    </sc-if>
+  </section>
+</main>
+</sc-if>
+
+<sc-if value="{{ isCourse }}" hint-placeholder-val="{{ false }}">
+<main style="zoom:{{ zoom }}">
+  <nav aria-label="Breadcrumb" style="max-width:1040px;margin:0 auto;padding:20px 28px 0;display:flex;gap:8px;font-size:14px;color:#5E5E63"><button onClick="{{ goExplore }}" style="background:none;border:0;font-size:15px;color:#7A1F2B;cursor:pointer;font-family:var(--font-body);font-size:14px;min-height:0;padding:0">‹ Explore</button><span aria-hidden="true">/</span><span aria-current="page">{{ d.code }}</span></nav>
+  <section style="text-align:center;padding:48px 28px 0;position:relative">
+    <div data-anim="up" style="font-family:'Space Mono',ui-monospace,monospace;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#7A1F2B">{{ d.code }} · {{ d.dept }}</div>
+    <h1 data-anim="up" data-delay="100" style="font-size:clamp(40px,6.5vw,84px);line-height:1;letter-spacing:-0.04em;margin:18px auto 0;max-width:14ch">{{ d.name }}</h1>
+    <p data-anim="up" data-delay="200" style="font-size:19px;color:#5E5E63;margin:18px auto 0;max-width:46ch;line-height:1.5">{{ d.blurb }}</p>
+    <div data-anim="rise" data-delay="300" style="position:relative;display:flex;justify-content:center;margin-top:48px">
+      <div aria-hidden="true" data-anim="drift" style="position:absolute;left:50%;top:50%;width:520px;height:520px;margin:-260px 0 0 -260px;border-radius:50%;background-image:radial-gradient(rgba(20,20,20,.14) 1.2px,transparent 1.6px);background-size:14px 14px;-webkit-mask-image:radial-gradient(circle,#000 20%,transparent 70%);mask-image:radial-gradient(circle,#000 20%,transparent 70%)"></div>
+      <div style="position:relative;background:#F5F4F1;border-radius:50%;padding:14px">
+      <div style="position:relative;width:250px;height:250px;flex:none"><svg viewBox="0 0 64 64" aria-hidden="true" style="width:100%;height:100%;display:block;transform:rotate(-90deg)"><circle cx="32" cy="32" r="26" fill="none" stroke="#E4E3DF" stroke-width="4"></circle><circle data-anim="ring" cx="32" cy="32" r="26" fill="none" stroke="#7A1F2B" stroke-width="4" stroke-linecap="round" stroke-dasharray="{{ d.dash }}"></circle></svg><div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center"><span style="font-family:var(--font-heading);font-weight:800;font-size:76px;letter-spacing:-0.05em;line-height:1">{{ d.pct }}%</span><span style="font-size:14px;color:#5E5E63;margin-top:4px">{{ d.band }} for you</span></div></div>
+      </div>
+    </div>
+    <div data-anim="up" data-delay="400" style="display:flex;gap:12px;justify-content:center;margin-top:36px;flex-wrap:wrap">
+      <button onClick="{{ d.toggleSave }}" aria-pressed="{{ d.savePressed }}" style="background:#7A1F2B;color:#fff;border:0;border-radius:999px;padding:0 26px;min-height:48px;font-family:var(--font-body);font-weight:600;font-size:15px;cursor:pointer;transition:transform .25s ease,background .25s ease;white-space:nowrap;min-width:160px" style-hover="background:#5C1620;transform:scale(1.04)">{{ d.saveIcon }} {{ d.saveLabel }}</button>
+      <button onClick="{{ d.hide }}" style="background:#E4E3DF;color:#141414;border:0;border-radius:999px;padding:0 26px;min-height:48px;font-family:var(--font-body);font-weight:600;font-size:15px;cursor:pointer;transition:transform .25s ease,background .25s ease;white-space:nowrap;">Not for me</button>
+    </div>
+  </section>
+
+  <section style="max-width:1040px;margin:64px auto 0;padding:0 28px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));text-align:center">
+    <div data-anim="up" data-delay="0" style="padding:10px"><div style="font-family:var(--font-heading);font-weight:800;font-size:44px;letter-spacing:-0.03em">{{ d.ratingLabel }}</div><div style="font-size:14px;color:#5E5E63;margin-top:4px">rating · {{ d.nrev }} reviews</div></div>
+    <div data-anim="up" data-delay="100" style="padding:10px;border-left:1px solid rgba(20,20,20,.1)"><div style="font-family:var(--font-heading);font-weight:800;font-size:44px;letter-spacing:-0.03em">{{ d.hrs }}h</div><div style="font-size:14px;color:#5E5E63;margin-top:4px">a week</div></div>
+    <div data-anim="up" data-delay="200" style="padding:10px;border-left:1px solid rgba(20,20,20,.1)"><div style="font-family:var(--font-heading);font-weight:800;font-size:44px;letter-spacing:-0.03em">{{ d.cr }}</div><div style="font-size:14px;color:#5E5E63;margin-top:4px">credits</div></div>
+    <div data-anim="up" data-delay="300" style="padding:10px;border-left:1px solid rgba(20,20,20,.1)"><div style="font-family:var(--font-heading);font-weight:800;font-size:44px;letter-spacing:-0.03em;color:{{ d.seatsColor }}">{{ d.seats }}</div><div style="font-size:14px;color:#5E5E63;margin-top:4px">seats left of {{ d.cap }}</div></div>
+  </section>
+  <div style="text-align:center;font-size:14px;color:#5E5E63;margin-top:14px">{{ d.slot }} · {{ d.inst.name }}</div>
+
+  <div role="tablist" aria-label="Course sections" style="display:flex;justify-content:center;margin-top:64px">
+    <div style="display:flex;background:#E4E3DF;border-radius:999px;padding:4px;gap:4px">
+      <sc-for list="{{ tabs }}" as="t" hint-placeholder-count="4"><button role="tab" aria-selected="{{ t.sel }}" onClick="{{ t.go }}" style="border-radius:999px;padding:0 20px;min-height:40px;font-size:14px;background:{{ t.edge }};color:{{ t.fg }};border:0;cursor:pointer;font-family:var(--font-body);transition:background .3s ease">{{ t.label }}</button></sc-for>
+    </div>
+  </div>
+
+  <section style="max-width:1040px;margin:0 auto;padding:48px 28px 100px">
+    <sc-if value="{{ tabOverview }}" hint-placeholder-val="{{ true }}">
+    <div role="tabpanel">
+      <h2 data-anim="up" style="font-size:clamp(28px,3.6vw,44px);letter-spacing:-0.03em;margin:0;text-align:center">Why it fits you.</h2>
+      <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:36px">
+        <sc-for list="{{ dReasonTiles }}" as="r" hint-placeholder-count="3">
+          <div data-anim="up" style="background:{{ r.bg }};color:{{ r.fg }};border-radius:28px;padding:30px;min-height:220px;display:flex;flex-direction:column;justify-content:space-between">
+            <span style="font-family:'Space Mono',ui-monospace,monospace;font-size:12px;letter-spacing:.18em;opacity:.7">{{ r.n }}</span>
+            <span style="font-family:var(--font-heading);font-weight:800;font-size:22px;line-height:1.2;letter-spacing:-0.01em">{{ r.text }}.</span>
+          </div>
+        </sc-for>
+      </div>
+      <sc-if value="{{ dHasChain }}" hint-placeholder-val="{{ true }}">
+      <div data-anim="up" style="margin-top:56px;text-align:center">
+        <div style="font-family:'Space Mono',ui-monospace,monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#5E5E63">Your path here</div>
+        <div style="display:flex;align-items:center;justify-content:center;flex-wrap:wrap;margin-top:22px">
+          <sc-for list="{{ dChain }}" as="p" hint-placeholder-count="2"><span style="display:flex;align-items:center"><span style="background:#141414;color:#F5F4F1;border-radius:999px;padding:10px 18px;font-size:14px">✓ {{ p.code }}</span><span aria-hidden="true" style="width:56px;height:2px;background:repeating-linear-gradient(90deg,#141414 0 4px,transparent 4px 8px);display:block"></span></span></sc-for>
+          <span style="border:2px solid #7A1F2B;color:#7A1F2B;border-radius:999px;padding:8px 18px;font-size:14px;font-weight:700">{{ d.code }}</span>
+        </div>
+      </div>
+      </sc-if>
+      <details style="margin:56px auto 0;max-width:620px;background:#E4E3DF;border-radius:24px;padding:20px 26px">
+        <summary style="cursor:pointer;font-size:15px">How we got {{ d.pct }}%</summary>
+        <div style="display:flex;flex-direction:column;gap:12px;margin-top:18px">
+          <sc-for list="{{ d.bars }}" as="b" hint-placeholder-count="5"><div style="display:grid;grid-template-columns:120px minmax(0,1fr) 44px;gap:14px;align-items:center;font-size:13px"><span>{{ b.label }}</span><span style="height:8px;border-radius:4px;background:#F5F4F1;display:block;position:relative;overflow:hidden"><span style="position:absolute;left:0;top:0;bottom:0;width:{{ b.raw }}%;background:{{ b.color }};border-radius:4px"></span></span><span style="color:#5E5E63;text-align:right">+{{ b.pts }}</span></div></sc-for>
+        </div>
+      </details>
+    </div>
+    </sc-if>
+
+    <sc-if value="{{ tabSyllabus }}" hint-placeholder-val="{{ false }}">
+    <div role="tabpanel">
+      <h2 data-anim="up" style="font-size:clamp(28px,3.6vw,44px);letter-spacing:-0.03em;margin:0;text-align:center">Twelve weeks, six ideas.</h2>
+      <ol style="list-style:none;padding:0;margin:48px 0 0;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));position:relative">
+        <span aria-hidden="true" style="position:absolute;left:8%;right:8%;top:11px;height:2px;background:#BDBCB8;display:block"></span>
+        <sc-for list="{{ dSyl }}" as="w" hint-placeholder-count="6">
+          <li data-anim="up" style="position:relative;text-align:center;padding:0 8px"><span style="width:24px;height:24px;border-radius:50%;background:#141414;border:5px solid #F5F4F1;display:block;margin:0 auto;box-sizing:border-box"></span><div style="font-family:'Space Mono',ui-monospace,monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#5E5E63;margin-top:14px">{{ w.wk }}</div><div style="font-size:15px;line-height:1.3;margin-top:8px">{{ w.t }}</div></li>
+        </sc-for>
+      </ol>
+      <div data-anim="up" style="margin:72px auto 0;max-width:720px">
+        <div style="font-family:'Space Mono',ui-monospace,monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#5E5E63;text-align:center">How you're graded</div>
+        <div style="display:flex;height:18px;border-radius:9px;overflow:hidden;margin-top:18px;gap:3px"><sc-for list="{{ dAssess }}" as="a" hint-placeholder-count="3"><span data-anim="grow" style="width:{{ a.p }}%;background:{{ a.c }};display:block"></span></sc-for></div>
+        <div style="display:flex;justify-content:center;gap:24px;margin-top:16px;flex-wrap:wrap"><sc-for list="{{ dAssess }}" as="a" hint-placeholder-count="3"><span style="display:flex;align-items:center;gap:8px;font-size:14px"><span style="width:10px;height:10px;border-radius:50%;background:{{ a.c }};display:block"></span>{{ a.n }} {{ a.p }}%</span></sc-for></div>
+      </div>
+    </div>
+    </sc-if>
+
+    <sc-if value="{{ tabInstructor }}" hint-placeholder-val="{{ false }}">
+    <div role="tabpanel" style="text-align:center">
+      <div data-anim="rise" style="width:180px;height:180px;border-radius:50%;margin:0 auto;background:#141414;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center">
+        <div aria-hidden="true" style="position:absolute;inset:0;background-image:radial-gradient(rgba(245,244,241,.25) 1.2px,transparent 1.6px);background-size:10px 10px"></div>
+        <span style="position:relative;font-family:var(--font-heading);font-weight:800;font-size:56px;color:#F5F4F1;letter-spacing:-0.03em">{{ d.initials }}</span>
+      </div>
+      <h2 data-anim="up" style="font-size:36px;letter-spacing:-0.03em;margin:28px 0 0">{{ d.inst.name }}</h2>
+      <div data-anim="up" style="font-size:16px;color:#5E5E63;margin-top:8px">{{ d.inst.role }}</div>
+      <div data-anim="up" style="display:flex;justify-content:center;gap:48px;margin-top:32px"><div><div style="font-family:var(--font-heading);font-weight:800;font-size:40px">{{ d.inst.rating }}</div><div style="font-size:13px;color:#5E5E63">instructor rating</div></div><div><div style="font-family:var(--font-heading);font-weight:800;font-size:40px">{{ d.inst.years }}</div><div style="font-size:13px;color:#5E5E63">years teaching</div></div></div>
+      <p data-anim="up" style="font-size:19px;line-height:1.55;margin:32px auto 0;max-width:44ch">{{ d.inst.bio }}</p>
+    </div>
+    </sc-if>
+
+    <sc-if value="{{ tabReviews }}" hint-placeholder-val="{{ false }}">
+    <div role="tabpanel">
+      <div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.4fr);gap:48px;align-items:center;max-width:820px;margin:0 auto">
+        <div data-anim="up" style="text-align:center"><div style="font-family:var(--font-heading);font-weight:800;font-size:120px;letter-spacing:-0.05em;line-height:.9">{{ d.ratingLabel }}</div><div aria-label="{{ d.ratingLabel }} out of 5" style="font-size:22px;color:#7A1F2B;letter-spacing:.1em;margin-top:10px">{{ d.starsLabel }}</div><div style="font-size:14px;color:#5E5E63;margin-top:6px">{{ d.nrev }} student reviews</div></div>
+        <div style="display:flex;flex-direction:column;gap:10px"><sc-for list="{{ dDist }}" as="r" hint-placeholder-count="5"><div style="display:grid;grid-template-columns:36px minmax(0,1fr) 40px;gap:12px;align-items:center;font-size:13px"><span>{{ r.label }}</span><span style="height:10px;border-radius:5px;background:#E4E3DF;display:block;position:relative;overflow:hidden"><span data-anim="grow" style="position:absolute;left:0;top:0;bottom:0;width:{{ r.p }}%;background:#141414;border-radius:5px;transform-origin:left"></span></span><span style="color:#5E5E63">{{ r.p }}%</span></div></sc-for></div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px;margin-top:56px">
+        <sc-for list="{{ d.reviews }}" as="r" hint-placeholder-count="3"><figure data-anim="up" style="margin:0;background:#E4E3DF;border-radius:28px;padding:28px;display:flex;flex-direction:column;gap:18px"><div style="color:#7A1F2B;font-size:15px">{{ r.stars }} / 5</div><blockquote style="margin:0;font-size:18px;line-height:1.45;letter-spacing:-0.01em">“{{ r.text }}”</blockquote><figcaption style="font-size:13px;color:#5E5E63;margin-top:auto">{{ r.who }} · {{ r.term }}</figcaption></figure></sc-for>
+      </div>
+    </div>
+    </sc-if>
+  </section>
+</main>
+</sc-if>
+
+<sc-if value="{{ isProgress }}" hint-placeholder-val="{{ false }}">
+<main style="zoom:{{ zoom }}">
+  <section style="text-align:center;padding:80px 28px 48px">
+    <div data-anim="up" style="font-family:'Space Mono',ui-monospace,monospace;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#7A1F2B">Year 3 · Computer Science</div>
+    <h1 data-anim="up" data-delay="100" style="font-size:clamp(44px,7vw,88px);line-height:1;letter-spacing:-0.04em;margin:18px auto 0">Your progress.</h1>
+    <p data-anim="up" data-delay="200" style="font-size:20px;color:#5E5E63;margin:18px auto 0;max-width:40ch">Where you are, where a {{ careerName }} needs to be, and how your saved courses get you there.</p>
+  </section>
+  <section data-anim="rise" style="display:flex;justify-content:center;position:relative">
+    <div aria-hidden="true" data-anim="drift" style="position:absolute;left:50%;top:50%;width:560px;height:560px;margin:-280px 0 0 -280px;border-radius:50%;background-image:radial-gradient(rgba(20,20,20,.14) 1.2px,transparent 1.6px);background-size:14px 14px;-webkit-mask-image:radial-gradient(circle,#000 20%,transparent 70%);mask-image:radial-gradient(circle,#000 20%,transparent 70%)"></div>
+    <div style="position:relative;background:#F5F4F1;border-radius:50%;padding:14px">
+    <div style="position:relative;width:280px;height:280px;flex:none"><svg viewBox="0 0 64 64" aria-hidden="true" style="width:100%;height:100%;display:block;transform:rotate(-90deg)"><circle cx="32" cy="32" r="26" fill="none" stroke="#E4E3DF" stroke-width="4"></circle><circle data-anim="ring" cx="32" cy="32" r="26" fill="none" stroke="#141414" stroke-width="4" stroke-linecap="round" stroke-dasharray="{{ creditDash }}"></circle></svg><div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center"><span style="font-family:var(--font-heading);font-weight:800;font-size:84px;letter-spacing:-0.05em;line-height:1">{{ totalCredits }}</span><span style="font-size:15px;color:#5E5E63;margin-top:4px">of 120 credits</span></div></div>
+    </div>
+  </section>
+
+  <section style="max-width:1040px;margin:0 auto;padding:96px 28px 0">
+    <h2 data-anim="up" style="font-size:clamp(28px,3.6vw,44px);letter-spacing:-0.03em;margin:0;text-align:center">Skills, closing in.</h2>
+    <div data-anim="up" style="display:flex;justify-content:center;gap:24px;font-size:14px;color:#5E5E63;margin-top:16px"><span style="display:flex;align-items:center;gap:8px"><span style="width:12px;height:12px;border-radius:50%;background:#141414;display:block"></span>You now</span><span style="display:flex;align-items:center;gap:8px"><span style="width:12px;height:12px;border-radius:50%;background:#C9A9AE;display:block"></span>After saved courses</span></div>
+    <div style="display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:16px;margin-top:40px">
+      <sc-for list="{{ gaps }}" as="g" hint-placeholder-count="5">
+        <div data-anim="up" style="background:#E4E3DF;border-radius:28px;padding:26px 16px;display:flex;flex-direction:column;align-items:center;gap:16px;text-align:center">
+          <div style="position:relative;width:120px;height:120px">
+            <svg viewBox="0 0 64 64" aria-hidden="true" style="width:100%;height:100%;display:block;transform:rotate(-90deg)"><circle cx="32" cy="32" r="26" fill="none" stroke="#F5F4F1" stroke-width="7"></circle><circle data-anim="ring" data-delay="300" cx="32" cy="32" r="26" fill="none" stroke="#C9A9AE" stroke-width="7" stroke-linecap="round" stroke-dasharray="{{ g.afterDash }}"></circle><circle data-anim="ring" cx="32" cy="32" r="26" fill="none" stroke="#141414" stroke-width="7" stroke-linecap="round" stroke-dasharray="{{ g.haveDash }}"></circle></svg>
+            <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center"><span style="font-family:var(--font-heading);font-weight:800;font-size:24px">{{ g.after }}</span><span style="font-size:11px;color:#5E5E63">of {{ g.target }}</span></div>
+          </div>
+          <div style="font-family:var(--font-heading);font-weight:800;font-size:15px;line-height:1.2">{{ g.name }}</div>
+          <span style="background:#F5F4F1;border-radius:999px;padding:5px 12px;font-size:12px">{{ g.status }}</span>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <section style="max-width:1040px;margin:0 auto;padding:96px 28px 100px;display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:20px">
+    <div data-anim="up" style="background:#E4E3DF;border-radius:28px;padding:36px">
+      <div style="font-family:'Space Mono',ui-monospace,monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#5E5E63">Degree requirements</div>
+      <div style="display:flex;flex-direction:column;gap:22px;margin-top:26px">
+        <sc-for list="{{ req }}" as="r" hint-placeholder-count="4"><div><div style="display:flex;justify-content:space-between;font-size:15px"><span>{{ r.name }}</span><span style="color:#5E5E63">{{ r.have }}/{{ r.need }}</span></div><div style="height:10px;border-radius:5px;background:#F5F4F1;margin-top:8px;position:relative;overflow:hidden"><div data-anim="grow" style="position:absolute;left:0;top:0;bottom:0;width:{{ r.pct }}%;background:#141414;border-radius:5px;transform-origin:left"></div></div></div></sc-for>
+      </div>
+    </div>
+    <div data-anim="up" data-delay="120" style="background:#7A1F2B;color:#fff;border-radius:28px;padding:36px;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden">
+      <div aria-hidden="true" style="position:absolute;right:-40px;bottom:-40px;width:200px;height:200px;border-radius:50%;background-image:radial-gradient(rgba(255,255,255,.3) 1.2px,transparent 1.6px);background-size:12px 12px"></div>
+      <div style="font-family:'Space Mono',ui-monospace,monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#F3E4E6;position:relative">Focus next</div>
+      <div style="position:relative"><div style="font-family:var(--font-heading);font-weight:800;font-size:clamp(24px,2.6vw,34px);line-height:1.05;letter-spacing:-0.02em;max-width:12ch;overflow-wrap:anywhere">{{ tg.name }}</div><div style="font-size:15px;color:#F3E4E6;margin-top:10px">Your biggest gap. We rank courses that close it higher.</div>
+      <button onClick="{{ goExplore }}" style="background:#fff;color:#7A1F2B;border:0;border-radius:999px;padding:0 26px;min-height:48px;font-family:var(--font-body);font-weight:600;font-size:15px;cursor:pointer;transition:transform .25s ease,background .25s ease;white-space:nowrap;margin-top:24px" style-hover="transform:scale(1.04)">Find courses</button></div>
+    </div>
+  </section>
+</main>
+</sc-if>
+
+<sc-if value="{{ isSaved }}" hint-placeholder-val="{{ false }}">
+<main style="zoom:{{ zoom }}">
+  <section style="text-align:center;padding:80px 28px 48px">
+    <div data-anim="up" style="font-family:'Space Mono',ui-monospace,monospace;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#7A1F2B">Spring 2027</div>
+    <h1 data-anim="up" data-delay="100" style="font-size:clamp(44px,7vw,88px);line-height:1;letter-spacing:-0.04em;margin:18px auto 0">Saved.</h1>
+    <p data-anim="up" data-delay="200" style="font-size:20px;color:#5E5E63;margin:18px auto 0;max-width:40ch">{{ savedCount }} courses · {{ savedCredits }} credits. Register them together on 14 Oct.</p>
+  </section>
+  <sc-if value="{{ hasClash }}" hint-placeholder-val="{{ false }}">
+    <div role="alert" style="max-width:640px;margin:0 auto 24px;background:#7A1F2B;color:#fff;border-radius:999px;padding:14px 24px;font-size:15px;text-align:center">Heads up: <sc-for list="{{ clashes }}" as="x" hint-placeholder-count="1"><span>{{ x.t }}. </span></sc-for></div>
+  </sc-if>
+  <section style="max-width:1040px;margin:0 auto;padding:0 28px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:20px">
+    <div data-anim="up" style="background:#141414;color:#F5F4F1;border-radius:28px;padding:36px;display:flex;align-items:center;gap:32px">
+      <div style="position:relative;width:170px;height:170px;flex:none"><svg viewBox="0 0 64 64" aria-hidden="true" style="width:100%;height:100%;display:block;transform:rotate(-90deg)"><circle cx="32" cy="32" r="26" fill="none" stroke="#2B2B2E" stroke-width="6"></circle><circle data-anim="ring" cx="32" cy="32" r="26" fill="none" stroke="#C9A9AE" stroke-width="6" stroke-linecap="round" stroke-dasharray="{{ savedDash }}"></circle></svg><div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center"><span style="font-family:var(--font-heading);font-weight:800;font-size:44px;letter-spacing:-0.03em">{{ savedHours }}h</span><span style="font-size:12px;color:#BDBCB8">of {{ hoursBudget }} a week</span></div></div>
+      <div><div style="font-family:'Space Mono',ui-monospace,monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#BDBCB8">Workload</div><div style="font-size:20px;line-height:1.35;margin-top:10px">{{ budgetNote }}</div></div>
+    </div>
+    <div data-anim="up" data-delay="120" style="background:#7A1F2B;color:#fff;border-radius:28px;padding:36px;display:flex;flex-direction:column;justify-content:space-between">
+      <div style="font-family:'Space Mono',ui-monospace,monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#F3E4E6">Registration</div>
+      <div><div style="font-family:var(--font-heading);font-weight:800;font-size:64px;letter-spacing:-0.04em;line-height:1">14 Oct</div><div style="font-size:15px;color:#F3E4E6;margin-top:6px">07:00 · your priority slot</div></div>
+      <button onClick="{{ goNotif }}" style="background:#fff;color:#7A1F2B;border:0;border-radius:999px;padding:0 26px;min-height:48px;font-family:var(--font-body);font-weight:600;font-size:15px;cursor:pointer;transition:transform .25s ease,background .25s ease;white-space:nowrap;align-self:flex-start" style-hover="transform:scale(1.04)">Remind me</button>
+    </div>
+  </section>
+
+  <section style="max-width:1040px;margin:0 auto;padding:72px 28px 0">
+    <h2 data-anim="up" style="font-size:clamp(28px,3.6vw,44px);letter-spacing:-0.03em;margin:0;text-align:center">Your week.</h2>
+    <div data-anim="rise" aria-label="Weekly timetable" style="margin-top:36px;background:#E4E3DF;border-radius:32px;padding:28px">
+      <div style="display:grid;grid-template-columns:52px repeat(5,minmax(0,1fr));gap:8px">
+        <div style="position:relative;height:380px;margin-top:34px"><sc-for list="{{ hoursAxis }}" as="h" hint-placeholder-count="6"><span style="position:absolute;top:{{ h.top }}%;left:0;font-size:11px;color:#5E5E63;font-family:'Space Mono',ui-monospace,monospace">{{ h.t }}</span></sc-for></div>
+        <sc-for list="{{ week }}" as="w" hint-placeholder-count="5">
+          <div><div style="text-align:center;font-size:13px;font-weight:600;height:26px;margin-bottom:8px">{{ w.name }}</div>
+            <div style="position:relative;height:380px;border-radius:18px;background:{{ w.offBg }}">
+              <sc-for list="{{ w.blocks }}" as="b" hint-placeholder-count="1"><div data-anim="up" style="position:absolute;left:6px;right:6px;top:{{ b.top }}%;height:{{ b.h }}%;background:#141414;color:#F5F4F1;border-radius:12px;font-size:12px;padding:8px 10px;box-sizing:border-box">{{ b.code }}</div></sc-for>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+      <div style="font-size:13px;color:#5E5E63;margin-top:16px;text-align:center">Striped days are days you said you can't come in.</div>
+    </div>
+  </section>
+
+  <section style="max-width:1040px;margin:0 auto;padding:72px 28px 100px">
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <sc-for list="{{ savedList }}" as="c" hint-placeholder-count="2">
+        <div data-anim="up" style="display:flex;align-items:center;gap:22px;background:#E4E3DF;border-radius:24px;padding:18px 22px">
+          <div style="position:relative;width:60px;height:60px;flex:none"><svg viewBox="0 0 64 64" aria-hidden="true" style="width:100%;height:100%;display:block;transform:rotate(-90deg)"><circle cx="32" cy="32" r="26" fill="none" stroke="#F5F4F1" stroke-width="6"></circle><circle data-anim="ring" cx="32" cy="32" r="26" fill="none" stroke="#7A1F2B" stroke-width="6" stroke-linecap="round" stroke-dasharray="{{ c.dash }}"></circle></svg><div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center"><span style="font-family:var(--font-heading);font-weight:800;font-size:14px">{{ c.pct }}</span></div></div>
+          <button onClick="{{ c.open }}" style="flex:1;min-width:0;background:none;border:0;padding:0;text-align:left;cursor:pointer;font-family:var(--font-body);color:#141414"><span style="display:block;font-family:var(--font-heading);font-weight:800;font-size:18px">{{ c.name }}</span><span style="display:block;font-size:14px;color:#5E5E63;margin-top:4px">{{ c.slot }} · <span style="color:{{ c.seatsColor }}">{{ c.seatsLabel }}</span></span></button>
+          <button onClick="{{ c.toggleSave }}" style="background:#F5F4F1;color:#141414;border:0;border-radius:999px;padding:0 26px;min-height:48px;font-family:var(--font-body);font-weight:600;font-size:15px;cursor:pointer;transition:transform .25s ease,background .25s ease;white-space:nowrap;min-height:40px;padding:0 18px;font-size:14px;font-weight:400">Remove</button>
+        </div>
+      </sc-for>
+      <sc-if value="{{ noSaved }}" hint-placeholder-val="{{ false }}"><div style="text-align:center;padding:40px 0"><p style="font-size:18px;color:#5E5E63;margin:0 0 20px">Nothing saved yet.</p><button onClick="{{ goExplore }}" style="background:#141414;color:#F5F4F1;border:0;border-radius:999px;padding:0 26px;min-height:48px;font-family:var(--font-body);font-weight:600;font-size:15px;cursor:pointer;transition:transform .25s ease,background .25s ease;white-space:nowrap;">Explore courses</button></div></sc-if>
+    </div>
+  </section>
+</main>
+</sc-if>
+
+<sc-if value="{{ isNotif }}" hint-placeholder-val="{{ false }}">
+<main style="zoom:{{ zoom }}">
+  <section style="text-align:center;padding:80px 28px 40px">
+    <h1 data-anim="up" style="font-size:clamp(44px,7vw,88px);line-height:1;letter-spacing:-0.04em;margin:0">Updates.</h1>
+    <p data-anim="up" data-delay="100" style="font-size:20px;color:#5E5E63;margin:18px 0 0">Deadlines, seat alerts and new matches.</p>
+    <div data-anim="up" data-delay="200" style="display:flex;justify-content:center;align-items:center;gap:16px;margin-top:28px;flex-wrap:wrap">
+      <div role="group" aria-label="Filter" style="display:flex;background:#E4E3DF;border-radius:999px;padding:4px;gap:4px"><sc-for list="{{ nTabs }}" as="t" hint-placeholder-count="3"><button onClick="{{ t.go }}" aria-pressed="{{ t.pressed }}" style="border-radius:999px;padding:0 18px;min-height:36px;font-size:14px;background:{{ t.bg }};color:{{ t.fg }};border:0;cursor:pointer;font-family:var(--font-body)">{{ t.name }}</button></sc-for></div>
+      <button onClick="{{ markAll }}" style="background:none;border:0;font-size:15px;color:#7A1F2B;cursor:pointer;font-family:var(--font-body);font-size:14px">Mark all read</button>
+    </div>
+  </section>
+  <section style="max-width:760px;margin:0 auto;padding:24px 28px 100px;position:relative">
+    <span aria-hidden="true" style="position:absolute;left:63px;top:40px;bottom:120px;width:2px;background:repeating-linear-gradient(180deg,#BDBCB8 0 4px,transparent 4px 10px);display:block"></span>
+    <sc-for list="{{ notifs }}" as="n" hint-placeholder-count="5">
+      <article data-anim="up" style="display:flex;gap:24px;align-items:flex-start;margin-bottom:18px;position:relative">
+        <div style="width:72px;height:72px;flex:none;border-radius:50%;background:#141414;color:#F5F4F1;display:flex;flex-direction:column;align-items:center;justify-content:center;border:6px solid #F5F4F1;box-sizing:border-box">
+          <sc-if value="{{ n.isDate }}" hint-placeholder-val="{{ false }}"><span style="font-family:var(--font-heading);font-weight:800;font-size:20px;line-height:1">{{ n.day }}</span><span style="font-size:10px;text-transform:uppercase;color:#C9A9AE">{{ n.mon }}</span></sc-if>
+          <sc-if value="{{ n.noDate }}" hint-placeholder-val="{{ true }}"><span style="font-family:'Space Mono',ui-monospace,monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase">{{ n.kind }}</span></sc-if>
+        </div>
+        <div style="flex:1;min-width:0;background:#E4E3DF;border-radius:24px;padding:22px 24px">
+          <div style="display:flex;justify-content:space-between;gap:16px;align-items:flex-start">
+            <h2 style="font-size:18px;margin:0;font-weight:{{ n.weight }};display:flex;align-items:center;gap:10px"><span aria-hidden="true" style="width:8px;height:8px;border-radius:50%;background:{{ n.dot }};display:block;flex:none"></span>{{ n.title }}</h2>
+            <span style="font-size:13px;color:#5E5E63;white-space:nowrap">{{ n.when }}</span>
+          </div>
+          <p style="font-size:15px;color:#5E5E63;margin:8px 0 0;line-height:1.5">{{ n.body }}</p>
+          <button onClick="{{ n.markRead }}" style="background:none;border:0;font-size:15px;color:#7A1F2B;cursor:pointer;font-family:var(--font-body);font-size:13px;min-height:32px;padding:0;margin-top:6px">{{ n.readLabel }}</button>
+        </div>
+      </article>
+    </sc-for>
+    <p style="text-align:center;font-size:14px;color:#5E5E63;margin-top:32px">Choose what you hear about in <button onClick="{{ goProfile }}" style="background:none;border:0;font-size:15px;color:#7A1F2B;cursor:pointer;font-family:var(--font-body);font-size:14px;min-height:0;padding:0">Settings</button>.</p>
+  </section>
+</main>
+</sc-if>
+
+<sc-if value="{{ isProfile }}" hint-placeholder-val="{{ false }}">
+<main style="zoom:{{ zoom }}">
+  <section style="text-align:center;padding:72px 28px 8px">
+    <div data-anim="rise" style="width:140px;height:140px;border-radius:50%;margin:0 auto;background:#141414;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center">
+      <div aria-hidden="true" style="position:absolute;inset:0;background-image:radial-gradient(rgba(245,244,241,.25) 1.2px,transparent 1.6px);background-size:10px 10px"></div>
+      <span style="position:relative;font-family:var(--font-heading);font-weight:800;font-size:44px;color:#F5F4F1">RA</span>
+    </div>
+    <h1 data-anim="up" data-delay="100" style="font-size:44px;letter-spacing:-0.03em;margin:24px 0 0">Riya Advani</h1>
+    <p data-anim="up" data-delay="200" style="font-size:17px;color:#5E5E63;margin:8px 0 0">BS Computer Science · Year 3</p>
+  </section>
+  <section style="max-width:720px;margin:0 auto;padding:0 28px 100px">
+    <div style="font-family:'Space Mono',ui-monospace,monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#5E5E63;margin:48px 0 14px 8px">Preferences</div>
+    <div data-anim="up" style="background:#E4E3DF;border-radius:28px;padding:8px 28px">
+      <sc-for list="{{ summary }}" as="s" hint-placeholder-count="4"><button onClick="{{ editGoal }}" style="display:flex;justify-content:space-between;align-items:center;gap:20px;padding:18px 0;border-bottom:1px solid rgba(20,20,20,.08);width:100%;background:none;border-left:0;border-right:0;border-top:0;cursor:pointer;font-family:var(--font-body);color:#141414;text-align:left"><span style="font-size:16px">{{ s.k }}</span><span style="display:flex;align-items:center;gap:12px;font-size:15px;color:#5E5E63;text-align:right">{{ s.v }}<span aria-hidden="true" style="font-size:18px">›</span></span></button></sc-for>
+    </div>
+    <div style="font-family:'Space Mono',ui-monospace,monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#5E5E63;margin:48px 0 14px 8px">What matters most</div>
+    <div data-anim="up" style="background:#E4E3DF;border-radius:28px;padding:8px 28px;padding:24px 28px">
+      <div style="display:flex;flex-direction:column;gap:22px">
+        <sc-for list="{{ sliders }}" as="s" hint-placeholder-count="5"><div><div style="display:flex;justify-content:space-between;font-size:15px"><span>{{ s.label }}</span><span style="color:#5E5E63">{{ s.pct }}%</span></div><input type="range" min="0" max="60" value="{{ s.value }}" onChange="{{ s.onChange }}" aria-label="{{ s.label }} weight" style="width:100%;accent-color:#7A1F2B;margin-top:8px"></div></sc-for>
+      </div>
+      <button onClick="{{ resetWeights }}" style="background:none;border:0;font-size:15px;color:#7A1F2B;cursor:pointer;font-family:var(--font-body);font-size:14px;padding:0;margin-top:14px">Reset to default</button>
+    </div>
+    <div style="font-family:'Space Mono',ui-monospace,monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#5E5E63;margin:48px 0 14px 8px">Notifications</div>
+    <div data-anim="up" style="background:#E4E3DF;border-radius:28px;padding:8px 28px">
+      <sc-for list="{{ settings }}" as="s" hint-placeholder-count="4"><div style="display:flex;justify-content:space-between;align-items:center;gap:20px;padding:18px 0;border-bottom:1px solid rgba(20,20,20,.08)"><div><div style="font-size:16px">{{ s.name }}</div><div style="font-size:13px;color:#5E5E63;margin-top:3px">{{ s.desc }}</div></div><button role="switch" aria-checked="{{ s.swPressed }}" aria-label="{{ s.name }}" onClick="{{ s.toggle }}" style="flex:none;width:52px;height:32px;min-height:32px;border-radius:999px;background:{{ s.swBg }};border:0;position:relative;cursor:pointer;padding:0;transition:background .3s ease"><span style="position:absolute;top:3px;left:{{ s.swX }};width:26px;height:26px;border-radius:50%;background:#fff;display:block;box-shadow:0 2px 6px rgba(0,0,0,.2);transition:left .3s cubic-bezier(.2,.7,.2,1)"></span></button></div></sc-for>
+    </div>
+    <div style="font-family:'Space Mono',ui-monospace,monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#5E5E63;margin:48px 0 14px 8px">Accessibility</div>
+    <div data-anim="up" style="background:#E4E3DF;border-radius:28px;padding:8px 28px">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:20px;padding:18px 0;border-bottom:1px solid rgba(20,20,20,.08);border-bottom:0"><div><div style="font-size:16px">{{ largeText.name }}</div><div style="font-size:13px;color:#5E5E63;margin-top:3px">{{ largeText.desc }}</div></div><button role="switch" aria-checked="{{ largeText.swPressed }}" aria-label="{{ largeText.name }}" onClick="{{ largeText.toggle }}" style="flex:none;width:52px;height:32px;min-height:32px;border-radius:999px;background:{{ largeText.swBg }};border:0;position:relative;cursor:pointer;padding:0;transition:background .3s ease"><span style="position:absolute;top:3px;left:{{ largeText.swX }};width:26px;height:26px;border-radius:50%;background:#fff;display:block;box-shadow:0 2px 6px rgba(0,0,0,.2);transition:left .3s cubic-bezier(.2,.7,.2,1)"></span></button></div>
+    </div>
+    <sc-if value="{{ hasHidden }}" hint-placeholder-val="{{ false }}">
+      <div style="font-family:'Space Mono',ui-monospace,monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#5E5E63;margin:48px 0 14px 8px">Hidden courses</div>
+      <div style="background:#E4E3DF;border-radius:28px;padding:8px 28px;padding:20px 28px;display:flex;flex-wrap:wrap;gap:10px"><sc-for list="{{ hiddenList }}" as="h" hint-placeholder-count="1"><button onClick="{{ h.restore }}" style="background:#F5F4F1;color:#141414;border:0;border-radius:999px;padding:0 26px;min-height:48px;font-family:var(--font-body);font-weight:600;font-size:15px;cursor:pointer;transition:transform .25s ease,background .25s ease;white-space:nowrap;min-height:40px;padding:0 18px;font-size:14px;font-weight:400">{{ h.name }} · Show</button></sc-for></div>
+    </sc-if>
+  </section>
+</main>
+</sc-if>
+
+<sc-if value="{{ hasToast }}" hint-placeholder-val="{{ false }}">
+<div role="status" aria-live="polite" style="position:fixed;left:50%;transform:translateX(-50%);bottom:32px;z-index:10;display:flex;align-items:center;gap:20px;background:#141414;color:#F5F4F1;padding:8px 8px 8px 24px;font-size:14px;border-radius:999px;box-shadow:0 20px 40px -20px rgba(0,0,0,.5)">
+  <span>{{ toastLabel }}</span>
+  <button onClick="{{ toastUndo }}" style="background:#F5F4F1;color:#141414;border:0;border-radius:999px;padding:0 18px;font-family:var(--font-heading);font-weight:800;font-size:13px;cursor:pointer">Undo</button>
+</div>
+</sc-if>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const RC=2*Math.PI*26;const ring=p=>(RC*Math.max(0,Math.min(100,p))/100).toFixed(1)+' '+RC.toFixed(1);
+const stars=n=>'★★★★★'.slice(0,Math.round(n))+'☆☆☆☆☆'.slice(0,5-Math.round(n));
+class Component extends DCLogic {
+  state={screen:'landing',step:1,career:'ml',interests:['Machine learning','Statistics'],taken:null,hours:30,offDays:['F'],weights:null,query:'',fDept:[],fMaxHrs:14,fDays:[],sort:'Best match',detailId:'cs361',tab:'overview',saved:['stat310','cs340'],hidden:[],read:['n4'],nFilter:'All',notifSet:{deadlines:true,seats:true,newc:true,email:false},largeText:false,toast:null};
+  componentDidUpdate(){const st=this.state,k=st.screen+'|'+st.tab+'|'+st.step+'|'+(st.taken?1:0);if(this.lastKey!==k){this.lastKey=k;this.queueAnim();}}
+  queueAnim(){clearTimeout(this.at);this.at=setTimeout(()=>{try{this.initAnim();}catch(e){document.querySelectorAll('[data-anim]').forEach(el=>{el.style.opacity='';});}},80);}
+  initAnim(){
+    if(this.stopCheck)this.stopCheck();
+    const els=[...document.querySelectorAll('[data-anim]')];if(!els.length)return;
+    if(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+    const ease='cubic-bezier(.2,.7,.2,1)';
+    const play=el=>{const t=el.dataset.anim;let delay=+(el.dataset.delay||0);
+      if(t==='up'||t==='rise'){const from=t==='up'?'translateY(28px)':'translateY(70px) scale(.97)';const a=el.animate([{opacity:0,transform:from},{opacity:1,transform:'none'}],{duration:t==='up'?900:1200,delay,easing:ease,fill:'both'});el.style.opacity='';a.onfinish=()=>a.cancel();}
+      else if(t==='grow'){const y=el.dataset.axis==='y';if(y)delay+=[...el.parentNode.children].indexOf(el)*90;const s0=y?'scaleY(0)':'scaleX(0)';const a=el.animate([{transform:s0,opacity:1},{transform:'none',opacity:1}],{duration:1000,delay,easing:ease,fill:'both'});el.style.opacity='';a.onfinish=()=>a.cancel();}
+      else if(t==='ring'){const L=parseFloat(el.getAttribute('stroke-dasharray'));el.style.opacity='';if(!isFinite(L)||L<=0)return;const a=el.animate([{strokeDashoffset:L},{strokeDashoffset:0}],{duration:1400,delay,easing:ease,fill:'both'});el.style.opacity='';a.onfinish=()=>a.cancel();}
+      else if(t==='count'){const to=+el.dataset.to;el.style.opacity='';const t0=performance.now()+delay;const step=now=>{const p=Math.min(1,Math.max(0,(now-t0)/1400));el.textContent=Math.round(to*(1-Math.pow(1-p,3)));if(p<1)requestAnimationFrame(step);};el.textContent='0';requestAnimationFrame(step);}};
+    const pending=[];
+    els.forEach(el=>{if(el.dataset.played)return;el.dataset.played='1';const t=el.dataset.anim;
+      if(t==='drift'){try{el.animate([{backgroundPosition:'0 0'},{backgroundPosition:'16px 32px'}],{duration:5000,iterations:Infinity});}catch(e){}return;}
+      if(t==='pulse'){try{el.animate([{transform:'scale(.9)',opacity:.7},{transform:'scale(1.15)',opacity:1},{transform:'scale(.9)',opacity:.7}],{duration:7000,iterations:Infinity,easing:'ease-in-out'});}catch(e){}return;}
+      el.style.opacity='0';pending.push(el);});
+    const safePlay=el=>{try{play(el);}catch(e){el.style.opacity='';}};const check=()=>{const vh=window.innerHeight||document.documentElement.clientHeight;for(let i=pending.length-1;i>=0;i--){const r=pending[i].getBoundingClientRect();if(r.top<vh*0.92&&r.bottom>0){const el=pending.splice(i,1)[0];safePlay(el);}}if(!pending.length)this.stopCheck();};
+    this.stopCheck=()=>{window.removeEventListener('scroll',check,true);window.removeEventListener('resize',check);};
+    window.addEventListener('scroll',check,{capture:true,passive:true});window.addEventListener('resize',check);
+    check();requestAnimationFrame(check);
+    clearTimeout(this.safe);this.safe=setTimeout(()=>{pending.length=0;this.stopCheck();document.querySelectorAll('[data-anim]').forEach(el=>{const t=el.dataset.anim;if(t==='drift'||t==='pulse')return;try{(el.getAnimations?el.getAnimations():[]).forEach(a=>{if(a.effect&&a.effect.getTiming().iterations!==Infinity)a.finish();});}catch(e){}el.style.opacity='';if(t==='count')el.textContent=el.dataset.to;});},4000);
+  }
+  componentDidMount(){this.queueAnim();const w=()=>{if(window.CANOPY){const D=window.CANOPY;this.setState({taken:D.PAST.map(p=>p.id),weights:{...D.DEF}});}else this.poll=setTimeout(w,40);};w();}
+  componentWillUnmount(){clearTimeout(this.tt);clearTimeout(this.poll);clearTimeout(this.at);clearTimeout(this.safe);if(this.stopCheck)this.stopCheck();}
+  go=s=>()=>{this.setState({screen:s,tab:'overview'});window.scrollTo(0,0);};
+  toast(label,undo){clearTimeout(this.tt);this.setState({toast:{label,undo}});this.tt=setTimeout(()=>this.setState({toast:null}),6000);}
+  tog(key,v){return ()=>this.setState(s=>({[key]:s[key].includes(v)?s[key].filter(x=>x!==v):s[key].concat(v)}));}
+  pill(on){return on?{bg:'#141414',fg:'#F5F4F1',edge:'#141414',pressed:'true'}:{bg:'transparent',fg:'#141414',edge:'rgba(20,20,20,.3)',pressed:'false'};}
+  have(){const D=window.CANOPY,h={...D.BASE};D.PAST.forEach(p=>{if(!this.state.taken.includes(p.id))Object.keys(p.sk).forEach(k=>h[k]=Math.max(0,h[k]-p.sk[k]));});return h;}
+  sub(c,H){
+    const D=window.CANOPY,st=this.state,T=D.CAREERS[st.career].t;let sim=0,tn=0,gp=0,gn=0;
+    D.AX.forEach(a=>{sim+=c.sk[a]*T[a];tn+=T[a];const g=Math.max(0,T[a]-H[a]);gp+=c.sk[a]*g;gn+=g;});
+    const bonus=st.interests.some(i=>(c.name+' '+c.blurb).toLowerCase().includes(i.toLowerCase().slice(0,6)))?5:0;
+    const preOk=c.pre.every(p=>{const x=D.PAST.find(q=>q.code===p);return !x||st.taken.includes(x.id);});
+    return {s:{goals:Math.min(99,Math.round(38+105*sim/tn)+bonus),gap:Math.min(99,Math.round(30+140*gp/(gn||1))),history:preOk?c.hist:Math.round(c.hist*.5),schedule:c.hrs>st.hours/2.5?Math.round(c.sched*.7):c.sched,cost:c.cost},preOk};
+  }
+  dec(c,H){
+    const D=window.CANOPY,st=this.state,w=st.weights,tot=D.SIG.reduce((a,s)=>a+w[s.k],0)||1,{s,preOk}=this.sub(c,H),T=D.CAREERS[st.career].t;
+    const parts=D.SIG.map(g=>({k:g.k,label:g.l,color:g.c,raw:s[g.k],weight:Math.round(w[g.k]/tot*100),pts:s[g.k]*w[g.k]/tot}));
+    const pct=Math.round(parts.reduce((a,p)=>a+p.pts,0));
+    const ax=D.AX.slice().sort((a,b)=>c.sk[b]*T[b]-c.sk[a]*T[a])[0];
+    const why={goals:'It builds '+D.AXN[ax].toLowerCase()+', which your goal needs',gap:D.AXN[ax]+' is one of your biggest gaps',history:c.hw,schedule:c.sw,cost:c.cw};
+    const top=parts.slice().sort((a,b)=>b.pts-a.pts);
+    const saved=st.saved.includes(c.id),low=c.seats<15;
+    return {...c,pct,dash:ring(pct),seatDash:ring(Math.round((1-c.seats/c.cap)*100)),initials:c.inst.name.replace(/^(Dr\.|Prof\.)\s*/,'').split(' ').map(x=>x[0]).join(''),band:pct>=85?'Great fit':pct>=72?'Good fit':'Okay fit',preOk,
+      meta:c.cr+' credits · '+c.hrs+' h/week',reason:why[(top.find(p=>p.k!=='goals')||top[0]).k],
+      reasons:top.slice(0,3).map(p=>({text:why[p.k],color:p.color})),
+      bars:parts.map(p=>({label:p.label,color:p.color,raw:p.raw,weight:p.weight,pts:Math.round(p.pts)})),
+      ratingLabel:c.rating.toFixed(1),starsLabel:stars(c.rating),seatsLabel:c.seats+' of '+c.cap+' seats left',seatsColor:low?'#7A1F2B':'#5E5E63',seatsPct:Math.round((1-c.seats/c.cap)*100),
+      saveLabel:saved?'Saved':'Save',saveIcon:saved?'♥':'♡',saveBg:saved?'#141414':'transparent',saveFg:saved?'#F5F4F1':'#141414',savePressed:saved?'true':'false',
+      open:()=>{this.setState({screen:'course',detailId:c.id,tab:'overview'});window.scrollTo(0,0);},
+      toggleSave:()=>{const was=this.state.saved.includes(c.id);this.setState(p=>({saved:was?p.saved.filter(x=>x!==c.id):p.saved.concat(c.id)}));this.toast(was?c.name+' removed from saved':c.name+' saved',()=>this.setState(p=>({saved:was?p.saved.concat(c.id):p.saved.filter(x=>x!==c.id)})));},
+      hide:()=>{this.setState(p=>({hidden:p.hidden.concat(c.id),screen:p.screen==='course'?'home':p.screen}));this.toast(c.name+' hidden from recommendations',()=>this.setState(p=>({hidden:p.hidden.filter(x=>x!==c.id)})));}};
+  }
+  renderVals(){
+    const D=window.CANOPY,st=this.state;
+    if(!D||!st.taken){const nop=()=>{};return {isLanding:st.screen==='landing',isApp:false,isOnboard:false,isHome:false,isExplore:false,isCourse:false,isProgress:false,isSaved:false,isNotif:false,isProfile:false,hasToast:false,goHome:this.go('home'),goOnboard:()=>this.setState({screen:'onboard',step:1}),goLanding:this.go('landing'),howItWorks:[],zoom:'1',toastLabel:'',toastUndo:nop};}
+    const H=this.have(),car=D.CAREERS[st.career];
+    const all=D.C.map(c=>this.dec(c,H));
+    const ranked=all.filter(c=>!st.hidden.includes(c.id)&&!c.days.split('').some(d=>st.offDays.includes(d))).sort((a,b)=>b.pct-a.pct);
+    const q=st.query.toLowerCase();
+    let results=all.filter(c=>!q||(c.code+' '+c.name+' '+c.inst.name).toLowerCase().includes(q)).filter(c=>!st.fDept.length||st.fDept.includes(c.dept)).filter(c=>c.hrs<=st.fMaxHrs).filter(c=>!st.fDays.length||c.days.split('').every(d=>st.fDays.includes(d)));
+    const sorts={'Best match':(a,b)=>b.pct-a.pct,'Highest rated':(a,b)=>b.rating-a.rating,'Lightest workload':(a,b)=>a.hrs-b.hrs};
+    results.sort(sorts[st.sort]);
+    const d=all.find(c=>c.id===st.detailId);const dRank=ranked.findIndex(r=>r.id===d.id)+1;
+    const tot=D.SIG.reduce((a,s)=>a+st.weights[s.k],0)||1;
+    const savedC=st.saved.map(id=>all.find(c=>c.id===id));
+    const sHrs=savedC.reduce((a,c)=>a+c.hrs,0),sCr=savedC.reduce((a,c)=>a+c.cr,0);
+    const after={...H};savedC.forEach(c=>D.AX.forEach(a=>{after[a]=Math.min(1,after[a]+c.sk[a]*.25);}));
+    const unread=D.NOTIFS.filter(n=>!st.read.includes(n.id)).length;
+    const dayN={M:'Mon',T:'Tue',W:'Wed',R:'Thu',F:'Fri'};
+    const on=id=>st.screen===id||(id==='explore'&&st.screen==='course');
+    const clash=[];savedC.forEach((a,i)=>savedC.slice(i+1).forEach(b=>{if(a.days.split('').some(x=>b.days.includes(x))&&a.t0<b.t1&&b.t0<a.t1)clash.push(a.code+' and '+b.code+' overlap');}));
+    const gaps=D.AX.map(a=>({name:D.AXN[a],have:Math.round(H[a]*100),after:Math.round(after[a]*100),target:Math.round(car.t[a]*100),gap:Math.max(0,Math.round((car.t[a]-H[a])*100))})).map(g=>({...g,haveDash:ring(g.have),afterDash:ring(g.after),targetDash:ring(g.target),afterW:Math.max(0,g.after-g.have),status:g.after>=g.target?'On track':g.gap>40?'Big gap':'Some gap'}));
+    const topGap=gaps.slice().sort((a,b)=>b.gap-a.gap)[0];
+    const nf=st.nFilter,notifs=D.NOTIFS.filter(n=>nf==='All'||(nf==='Unread'?!st.read.includes(n.id):n.kind==='Deadline')).map(n=>{const r=st.read.includes(n.id);return {...n,isDate:!!n.day,noDate:!n.day,unread:!r,weight:r?'400':'700',dot:r?'transparent':'#7A1F2B',markRead:()=>this.setState(s=>({read:s.read.includes(n.id)?s.read.filter(x=>x!==n.id):s.read.concat(n.id)})),readLabel:r?'Mark unread':'Mark read'};});
+    const ss=st.notifSet,tg=k=>()=>this.setState(s=>({notifSet:{...s.notifSet,[k]:!s.notifSet[k]}}));
+    const sw=(on)=>({swBg:on?'#7A1F2B':'#BDBCB8',swX:on?'23px':'3px',swLabel:on?'On':'Off',swPressed:on?'true':'false'});
+    return {
+      isLanding:st.screen==='landing',isOnboard:st.screen==='onboard',isApp:st.screen!=='landing'&&st.screen!=='onboard',
+      isHome:st.screen==='home',isExplore:st.screen==='explore',isCourse:st.screen==='course',isProgress:st.screen==='progress',isSaved:st.screen==='saved',isNotif:st.screen==='notif',isProfile:st.screen==='profile',
+      goLanding:this.go('landing'),goOnboard:()=>{this.setState({screen:'onboard',step:1});window.scrollTo(0,0);},goHome:this.go('home'),goExplore:this.go('explore'),goProgress:this.go('progress'),goSaved:this.go('saved'),goNotif:this.go('notif'),goProfile:this.go('profile'),
+      howItWorks:[{n:'01',title:'Tell us your goal',body:'Pick the role you are aiming for and what you enjoy. You can change it any time.'},{n:'02',title:'We read your record',body:'Your transcript shows what you have covered and which courses you can take next.'},{n:'03',title:'Get courses with reasons',body:'Every recommendation says why it fits. Save the ones you like and register in one click.'}],
+      nav:[['home','Home'],['explore','Explore'],['progress','Progress'],['saved','Saved · '+st.saved.length]].map(([id,label])=>({label,go:this.go(id),edge:on(id)?'#141414':'transparent',fg:on(id)?'#F5F4F1':'#141414',current:on(id)?'page':undefined})),
+      hasUnread:unread>0,unreadCount:unread,bellLabel:'Notifications, '+unread+' unread',
+      step:st.step,step1:st.step===1,step2:st.step===2,step3:st.step===3,step4:st.step===4,canBack:st.step>1,
+      stepBars:[1,2,3,4].map(i=>({bg:i<=st.step?'#7A1F2B':'#D2D1CC'})),
+      stepTitle:['What do you want to become?','What do you enjoy?','Is this what you have taken?','How much time do you have?'][st.step-1],
+      stepHint:['Pick the closest one. It sets which skills we look for.','Pick as many as you like. These nudge the ranking.','We use this to check prerequisites and find your skill gaps.','We only recommend courses that fit your week.'][st.step-1],
+      stepNextLabel:st.step===4?'Show my courses →':'Continue →',
+      stepNext:()=>{if(st.step===4){this.setState({screen:'home'});window.scrollTo(0,0);}else this.setState({step:st.step+1});},
+      stepBack:()=>this.setState({step:Math.max(1,st.step-1)}),
+      careers:Object.keys(D.CAREERS).map(k=>({name:D.CAREERS[k].name,desc:D.CAREERS[k].desc,pick:()=>this.setState({career:k}),...this.pill(st.career===k)})),
+      interests:D.INTERESTS.map(n=>({name:n,toggle:this.tog('interests',n),...this.pill(st.interests.includes(n))})),
+      pastList:D.PAST.map(p=>({...p,checked:st.taken.includes(p.id),toggle:this.tog('taken',p.id)})),
+      hours:st.hours,setHours:e=>this.setState({hours:+e.target.value}),
+      days:['M','T','W','R','F'].map(k=>({name:dayN[k],toggle:this.tog('offDays',k),...this.pill(st.offDays.includes(k))})),
+      summary:[{k:'Goal',v:car.name},{k:'Interests',v:st.interests.join(', ')||'None yet'},{k:'Courses taken',v:st.taken.length+' of '+D.PAST.length+' confirmed'},{k:'Time',v:st.hours+' h a week'+(st.offDays.length?', not '+st.offDays.map(k=>dayN[k]).join('/'):'')}],
+      matchCount:ranked.length,hoursDash:ring(st.hours/50*100),savedDash:ring(Math.min(100,sHrs/st.hours*100)),creditDash:ring(58/120*100),
+      careerGlyphs:Object.keys(D.CAREERS).map((k,i)=>({name:D.CAREERS[k].name,desc:D.CAREERS[k].desc,pick:()=>this.setState({career:k}),pressed:st.career===k?'true':'false',bg:st.career===k?'#141414':'#E4E3DF',fg:st.career===k?'#F5F4F1':'#141414',shape:['50%','0','50% 50% 0 50%','0 50% 50% 50%','50% 0','8px'][i],shapeBg:st.career===k?'#7A1F2B':'#141414'})),
+      pastPills:D.PAST.map(p=>{const on=st.taken.includes(p.id);return {...p,toggle:this.tog('taken',p.id),pressed:on?'true':'false',bg:on?'#141414':'transparent',fg:on?'#F5F4F1':'#5E5E63',edge:on?'#141414':'rgba(20,20,20,.25)',mark:on?'✓':'+'};}),
+      moreFits:ranked.slice(1,6),deadlineDays:'14',
+      careerName:car.name,firstName:'Riya',
+      top3:ranked.slice(0,3),best:ranked[0],hasBest:ranked.length>0,
+      nextDeadline:D.NOTIFS[0],deadlines:D.NOTIFS.filter(n=>n.day).slice(0,3),
+      gaps,topGapName:topGap.name.toLowerCase(),tg:topGap,
+      savedCount:st.saved.length,savedHours:sHrs,savedCredits:sCr,hoursBudget:st.hours,
+      savedPct:Math.min(100,Math.round(sHrs/st.hours*100)),overBudget:sHrs>st.hours,
+      budgetNote:sHrs>st.hours?(sHrs-st.hours)+' hours over your weekly budget':(st.hours-sHrs)+' hours a week to spare',
+      query:st.query,setQuery:e=>this.setState({query:e.target.value}),
+      deptOpts:['CS','STAT','MATH','INFO'].map(x=>({name:x,checked:st.fDept.includes(x),toggle:this.tog('fDept',x)})),
+      dayOpts:['M','T','W','R','F'].map(k=>({name:dayN[k],checked:st.fDays.includes(k),toggle:this.tog('fDays',k)})),
+      fMaxHrs:st.fMaxHrs,setFMaxHrs:e=>this.setState({fMaxHrs:+e.target.value}),
+      sortOpts:Object.keys(sorts).map(n=>({name:n,value:n})),sortVal:st.sort,setSort:e=>this.setState({sort:e.target.value}),
+      activeFilters:[].concat(st.fDept.map(x=>({label:x,clear:this.tog('fDept',x)})),st.fDays.map(k=>({label:dayN[k]+' only',clear:this.tog('fDays',k)})),st.fMaxHrs<14?[{label:'Up to '+st.fMaxHrs+' h/week',clear:()=>this.setState({fMaxHrs:14})}]:[]),
+      hasFilters:st.fDept.length+st.fDays.length>0||st.fMaxHrs<14,clearFilters:()=>this.setState({fDept:[],fDays:[],fMaxHrs:14,query:''}),
+      results,resultCount:results.length,noResults:results.length===0,
+      d,dRank:dRank||'—',
+      tabs:[['overview','Overview'],['syllabus','Syllabus'],['instructor','Instructor'],['reviews','Reviews']].map(([id,l])=>({label:l,go:()=>this.setState({tab:id}),edge:st.tab===id?'#141414':'transparent',fg:st.tab===id?'#F5F4F1':'#141414',weight:st.tab===id?'700':'400',sel:st.tab===id?'true':'false'})),
+      tabOverview:st.tab==='overview',tabSyllabus:st.tab==='syllabus',tabInstructor:st.tab==='instructor',tabReviews:st.tab==='reviews',
+      dSyl:d.syl.map((t,i)=>({wk:'Weeks '+(i*2+1)+'–'+(i*2+2),t})),
+      dAssess:d.assess.map(([n,p],i)=>({n,p,c:['#141414','#7A1F2B','#BDBCB8'][i%3]})),
+      sortPills:Object.keys(sorts).map(n=>({name:n,pick:()=>this.setState({sort:n}),...this.pill(st.sort===n)})),
+      deptPills:['CS','STAT','MATH','INFO'].map(x=>({name:x,toggle:this.tog('fDept',x),...this.pill(st.fDept.includes(x))})),
+      dayPills:['M','T','W','R','F'].map(k=>({name:dayN[k],toggle:this.tog('fDays',k),...this.pill(st.fDays.includes(k))})),
+      dReasonTiles:d.reasons.map((r,i)=>({n:'0'+(i+1),text:r.text,bg:['#141414','#E4E3DF','#7A1F2B'][i],fg:['#F5F4F1','#141414','#fff'][i]})),
+      dDist:d.dist.map((p,i)=>({label:(5-i)+' ★',p})),
+      dChain:d.pre.map(p=>({code:p})),dHasChain:d.pre.length>0,
+      savedList:savedC,hasSaved:savedC.length>0,noSaved:savedC.length===0,
+      clashes:clash.map(t=>({t})),hasClash:clash.length>0,
+      week:['M','T','W','R','F'].map(k=>({name:dayN[k],off:st.offDays.includes(k),offBg:st.offDays.includes(k)?'repeating-linear-gradient(45deg,#D2D1CC 0 6px,#F5F4F1 6px 12px)':'#F5F4F1',blocks:savedC.filter(c=>c.days.includes(k)).map(c=>({code:c.code,top:((c.t0-8)/10*100).toFixed(1),h:((c.t1-c.t0)/10*100).toFixed(1)}))})),
+      hoursAxis:[8,10,12,14,16,18].map(h=>({t:(h<10?'0':'')+h+':00',top:((h-8)/10*100).toFixed(1)})),
+      req:D.REQ.map(r=>({...r,pct:Math.round(r.have/r.need*100)})),
+      totalCredits:58,
+      notifs,hasNotifs:notifs.length>0,
+      nTabs:['All','Unread','Deadlines'].map(n=>({name:n,go:()=>this.setState({nFilter:n}),...this.pill(st.nFilter===n)})),
+      markAll:()=>this.setState({read:D.NOTIFS.map(n=>n.id)}),
+      sliders:D.SIG.map(s=>({label:s.l,value:st.weights[s.k],pct:Math.round(st.weights[s.k]/tot*100),onChange:e=>this.setState(p=>({weights:{...p.weights,[s.k]:+e.target.value}}))})),
+      resetWeights:()=>this.setState({weights:{...D.DEF}}),
+      settings:[['deadlines','Registration deadlines','Reminders 7 days and 1 day before'],['seats','Seat alerts','When a saved course drops below 15 seats'],['newc','New matching courses','When a new course fits your goal'],['email','Also send by email','riya.advani@uni.edu']].map(([k,n,dsc])=>({name:n,desc:dsc,toggle:tg(k),...sw(ss[k])})),
+      largeText:{name:'Larger text',desc:'Increase text size across Learnix',toggle:()=>this.setState(s=>({largeText:!s.largeText})),...sw(st.largeText)},
+      zoom:st.largeText?'1.125':'1',
+      hiddenList:st.hidden.map(id=>{const c=D.C.find(x=>x.id===id);return {name:c.name,restore:this.tog('hidden',id)};}),hasHidden:st.hidden.length>0,
+      editGoal:()=>{this.setState({screen:'onboard',step:1});window.scrollTo(0,0);},
+      hasToast:!!st.toast,toastLabel:st.toast?st.toast.label:'',
+      toastUndo:()=>{if(st.toast)st.toast.undo();clearTimeout(this.tt);this.setState({toast:null});}
+    };
+  }
+}
+
+</script>
+</body>
+</html>

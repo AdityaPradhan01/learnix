@@ -1,0 +1,238 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  // Pooled (pgbouncer) connection for the running app — required on
+  // serverless hosts. Migrations need a direct connection (see directUrl)
+  // because pgbouncer's transaction pooling doesn't support prepared
+  // statements/advisory locks that `prisma migrate` relies on.
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+// ── Account ─────────────────────────────────────────────────────────────
+
+model User {
+  id           String   @id @default(cuid())
+  name         String
+  email        String   @unique
+  passwordHash String
+  program      String   @default("BS Computer Science")
+  year         Int      @default(1)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  profile       Profile?
+  weights       WeightsProfile?
+  notifSettings NotificationSettings?
+  transcript    TranscriptEntry[]
+  saved         SavedCourse[]
+  hidden        HiddenCourse[]
+  notifReads    NotificationRead[]
+}
+
+// Student-tunable ranking intent: career goal, interests, weekly time
+// budget, and days they can't take classes. Everything the scoring engine
+// needs about "who the student is" that isn't derivable from the transcript.
+model Profile {
+  id        String   @id @default(cuid())
+  userId    String   @unique
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  careerKey String
+  career    Career   @relation(fields: [careerKey], references: [key])
+  interests String[]
+  hours     Int      @default(30)
+  offDays   String[]
+  onboarded Boolean  @default(false)
+  largeText Boolean  @default(false)
+  updatedAt DateTime @updatedAt
+}
+
+// The 5 signal weights (goals/gap/history/schedule/cost), user-adjustable,
+// normalised on read by the scoring engine — never assumed to sum to 100.
+model WeightsProfile {
+  id       String @id @default(cuid())
+  userId   String @unique
+  user     User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  goals    Int    @default(30)
+  gap      Int    @default(25)
+  history  Int    @default(20)
+  schedule Int    @default(15)
+  cost     Int    @default(10)
+}
+
+model NotificationSettings {
+  id         String  @id @default(cuid())
+  userId     String  @unique
+  user       User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  deadlines  Boolean @default(true)
+  seats      Boolean @default(true)
+  newCourses Boolean @default(true)
+  email      Boolean @default(false)
+}
+
+// ── Catalogue ───────────────────────────────────────────────────────────
+
+// Career target vectors the scoring engine compares a course's skill vector
+// against (see lib/scoring). Axes: ml, stat, sys, alg, prac — 0..1 scale.
+model Career {
+  key   String @id
+  name  String
+  desc  String
+  tMl   Float
+  tStat Float
+  tSys  Float
+  tAlg  Float
+  tPrac Float
+
+  profiles Profile[]
+}
+
+model Instructor {
+  id      String   @id @default(cuid())
+  name    String
+  role    String
+  years   Int
+  rating  Float
+  bio     String
+  courses Course[]
+}
+
+model Course {
+  id           String @id @default(cuid())
+  code         String @unique
+  dept         String
+  name         String
+  credits      Int
+  hoursPerWeek Int
+  days         String // day-letters, e.g. "MW"
+  startTime    Float // t0, decimal hour
+  endTime      Float // t1, decimal hour
+  slot         String // human-readable meeting time
+  seats        Int
+  capacity     Int
+
+  instructorId String
+  instructor   Instructor @relation(fields: [instructorId], references: [id])
+
+  rating      Float
+  reviewCount Int
+  ratingDist  Int[] // 5 elements, 5-star down to 1-star, percent
+
+  // Skill vector this course builds, on the same 5 axes as Career targets.
+  skMl   Float @default(0)
+  skStat Float @default(0)
+  skSys  Float @default(0)
+  skAlg  Float @default(0)
+  skPrac Float @default(0)
+
+  // Base subscores the scoring engine adjusts live (halved/discounted per
+  // the student's actual prerequisites and schedule) — see lib/scoring.
+  historyScore   Int
+  scheduleScore  Int
+  costScore      Int
+  historyReason  String
+  scheduleReason String
+  costReason     String
+
+  prerequisites String[] // prerequisite course codes
+  blurb         String
+  syllabus      String[] // one topic per ~2-week block
+  assessment    Json // [{ name: string, percent: number }]
+
+  // Which degree-requirement bucket this course's credits count toward.
+  requirementCategory String
+
+  reviews           Review[]
+  saved             SavedCourse[]
+  hidden            HiddenCourse[]
+  transcriptEntries TranscriptEntry[]
+
+  createdAt DateTime @default(now())
+
+  @@index([dept])
+}
+
+model Review {
+  id       String @id @default(cuid())
+  courseId String
+  course   Course @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  who      String
+  term     String
+  stars    Int
+  text     String
+}
+
+// Requirement buckets per degree program (e.g. "BS Computer Science" ->
+// "CS core" needs 40 credits). "have" is never stored — it's derived at
+// query time from the student's confirmed transcript, so it can't go stale.
+model ProgramRequirement {
+  id          String @id @default(cuid())
+  program     String
+  name        String
+  creditsNeed Int
+
+  @@unique([program, name])
+}
+
+// ── Per-student state ──────────────────────────────────────────────────
+
+model TranscriptEntry {
+  id        String  @id @default(cuid())
+  userId    String
+  user      User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  courseId  String
+  course    Course  @relation(fields: [courseId], references: [id])
+  // Null when the student self-reported "already taken" during onboarding
+  // rather than a real registrar-posted grade — never fabricated.
+  grade     String?
+  term      String
+  confirmed Boolean @default(true)
+
+  @@unique([userId, courseId])
+}
+
+model SavedCourse {
+  userId   String
+  user     User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  courseId String
+  course   Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  savedAt  DateTime @default(now())
+
+  @@id([userId, courseId])
+}
+
+model HiddenCourse {
+  userId   String
+  user     User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  courseId String
+  course   Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  hiddenAt DateTime @default(now())
+
+  @@id([userId, courseId])
+}
+
+// ── Notifications ───────────────────────────────────────────────────────
+
+model Notification {
+  id        String    @id @default(cuid())
+  kind      String // "Deadline" | "Seats" | "New"
+  title     String
+  body      String
+  occursAt  DateTime?
+  createdAt DateTime  @default(now())
+
+  reads NotificationRead[]
+}
+
+model NotificationRead {
+  userId         String
+  user           User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  notificationId String
+  notification   Notification @relation(fields: [notificationId], references: [id], onDelete: Cascade)
+  readAt         DateTime     @default(now())
+
+  @@id([userId, notificationId])
+}

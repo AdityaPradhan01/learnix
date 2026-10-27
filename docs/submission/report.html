@@ -1,0 +1,490 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Learnix — Project Report</title>
+<style>
+  @page { size: A4; margin: 22mm 18mm; }
+  * { box-sizing: border-box; }
+  body {
+    font-family: "Georgia", "Times New Roman", serif;
+    color: #1a1a1a;
+    font-size: 11.5pt;
+    line-height: 1.55;
+    margin: 0;
+  }
+  h1, h2, h3, .mono {
+    font-family: "Arial", "Helvetica", sans-serif;
+  }
+  .cover {
+    height: 253mm;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    page-break-after: always;
+  }
+  .cover .brand {
+    font-family: "Arial Black", "Arial", sans-serif;
+    font-weight: 900;
+    font-size: 40pt;
+    letter-spacing: 1px;
+    color: #7A1F2B;
+  }
+  .cover .dot { color: #7A1F2B; }
+  .cover .tagline {
+    font-family: "Arial", sans-serif;
+    font-size: 12pt;
+    color: #444;
+    margin-top: 6pt;
+    letter-spacing: 0.5px;
+  }
+  .cover .subtitle {
+    font-family: "Arial", sans-serif;
+    font-weight: 700;
+    font-size: 15pt;
+    margin-top: 46pt;
+    color: #1a1a1a;
+  }
+  .cover .kind {
+    font-family: "Arial", sans-serif;
+    font-size: 10.5pt;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #7A1F2B;
+    margin-top: 4pt;
+  }
+  .cover .authorblock {
+    margin-top: 70pt;
+    font-family: "Arial", sans-serif;
+    font-size: 11.5pt;
+    border-top: 1px solid #ccc;
+    padding-top: 16pt;
+    width: 70mm;
+  }
+  .cover .authorblock .name { font-weight: 700; font-size: 13pt; margin-bottom: 4pt; }
+  .cover .authorblock .meta { color: #444; }
+
+  section { page-break-before: always; }
+  section:first-of-type { page-break-before: avoid; }
+
+  h1.section-title {
+    font-size: 16pt;
+    color: #7A1F2B;
+    border-bottom: 2px solid #7A1F2B;
+    padding-bottom: 6pt;
+    margin-bottom: 14pt;
+    letter-spacing: 0.3px;
+  }
+  h2 {
+    font-size: 12.5pt;
+    color: #1a1a1a;
+    margin-top: 20pt;
+    margin-bottom: 6pt;
+  }
+  h3 {
+    font-size: 11pt;
+    color: #3a3a3a;
+    margin-top: 14pt;
+    margin-bottom: 4pt;
+  }
+  p { margin: 6pt 0; text-align: justify; }
+  ul, ol { margin: 6pt 0; padding-left: 18pt; }
+  li { margin: 3pt 0; text-align: justify; }
+  code, .mono {
+    font-family: "Consolas", "Courier New", monospace;
+    font-size: 9.5pt;
+    background: #f3f1ee;
+    padding: 1px 4px;
+    border-radius: 3px;
+  }
+  .callout {
+    background: #faf5f0;
+    border-left: 3px solid #7A1F2B;
+    padding: 8pt 12pt;
+    margin: 10pt 0;
+    font-size: 10.5pt;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 8pt 0;
+    font-size: 10pt;
+  }
+  th, td {
+    border: 1px solid #ddd;
+    padding: 5pt 8pt;
+    text-align: left;
+    vertical-align: top;
+  }
+  th { background: #f3f1ee; font-family: Arial, sans-serif; font-weight: 700; }
+  .shot {
+    width: 100%;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin: 8pt 0;
+    display: block;
+  }
+  .shot-caption {
+    font-family: Arial, sans-serif;
+    font-size: 9pt;
+    color: #666;
+    text-align: center;
+    margin-top: -4pt;
+    margin-bottom: 10pt;
+  }
+  .two-col {
+    display: flex;
+    gap: 14pt;
+  }
+  .two-col > div { flex: 1; }
+  .chip-row { display: flex; flex-wrap: wrap; gap: 6pt; margin: 8pt 0; }
+  .chip {
+    font-family: Arial, sans-serif;
+    font-size: 9pt;
+    background: #1a1a1a;
+    color: #fff;
+    padding: 3pt 9pt;
+    border-radius: 999px;
+  }
+  .toc-item { display: flex; justify-content: space-between; padding: 4pt 0; border-bottom: 1px dotted #ccc; font-family: Arial, sans-serif; font-size: 10.5pt; }
+  footer.page-footer { display: none; }
+</style>
+</head>
+<body>
+
+<!-- Cover page -->
+<div class="cover">
+  <div class="brand">LEARN<span class="dot">I</span>X</div>
+  <div class="tagline">AN EXPLAINABLE, STEERABLE COURSE RECOMMENDER SYSTEM</div>
+  <div class="subtitle">Project Report</div>
+  <div class="kind">B.Tech. Project Submission</div>
+  <div class="authorblock">
+    <div class="name">Aditya Pradhan</div>
+    <div class="meta">Roll No: 23108A0010</div>
+    <div class="meta">Branch: EXCS A</div>
+  </div>
+</div>
+
+<!-- Table of contents -->
+<section>
+<h1 class="section-title">Table of Contents</h1>
+<div class="toc-item"><span>1. Abstract</span><span>3</span></div>
+<div class="toc-item"><span>2. Introduction &amp; Problem Statement</span><span>3</span></div>
+<div class="toc-item"><span>3. Objectives</span><span>4</span></div>
+<div class="toc-item"><span>4. Technology Stack</span><span>4</span></div>
+<div class="toc-item"><span>5. System Architecture</span><span>5</span></div>
+<div class="toc-item"><span>6. Database Design</span><span>6</span></div>
+<div class="toc-item"><span>7. The Recommendation Algorithm</span><span>7</span></div>
+<div class="toc-item"><span>8. Application Walkthrough (Screens)</span><span>9</span></div>
+<div class="toc-item"><span>9. Design System</span><span>13</span></div>
+<div class="toc-item"><span>10. Performance Engineering</span><span>13</span></div>
+<div class="toc-item"><span>11. Testing</span><span>14</span></div>
+<div class="toc-item"><span>12. Conclusion &amp; Future Scope</span><span>14</span></div>
+</section>
+
+<!-- Abstract -->
+<section>
+<h1 class="section-title">1. Abstract</h1>
+<p>
+Choosing courses each term is a decision students make with incomplete information: which course
+actually moves them toward the career they want, which ones conflict with their schedule, which
+ones they are even eligible for given their transcript. <b>Learnix</b> is a full-stack web
+application that solves this as a <b>content-based, multi-criteria recommendation problem</b>.
+Every course in the catalogue carries a skill vector across five axes — machine learning,
+statistics, systems, algorithms, and engineering practice — and every career target carries the
+same vector. Learnix scores each eligible course against a student's declared career goal, their
+actual transcript-derived skill level, their stated interests, their remaining prerequisite and
+schedule constraints, and a student-adjustable set of weights, then explains every score in plain
+language rather than presenting an opaque number.
+</p>
+<p>
+Unlike collaborative-filtering recommenders that need large historical interaction data, Learnix's
+approach is <b>fully explainable and cold-start-safe</b>: a brand-new student with no history still
+gets ranked, reasoned recommendations from day one, and can steer the ranking logic itself by
+adjusting five weight sliders rather than being at the mercy of a black box.
+</p>
+</section>
+
+<!-- Introduction -->
+<section>
+<h1 class="section-title">2. Introduction &amp; Problem Statement</h1>
+<p>
+Degree-program advising is typically handled by static degree-audit sheets and generic catalogue
+browsers that list every course but rank none of them. A student trying to decide what to take
+next term has to manually cross-reference their transcript against prerequisites, estimate whether
+a course's time slot fits their week, and guess whether a course actually serves the career they
+are aiming for. This is slow, error-prone, and gives no reasoning a student can inspect or
+challenge.
+</p>
+<p>The problem Learnix addresses has four parts:</p>
+<ul>
+<li><b>Relevance</b> — which eligible courses best close the gap between a student's current skills and their career target?</li>
+<li><b>Feasibility</b> — which of those courses actually fit the student's remaining weekly time budget and day availability, without schedule conflicts?</li>
+<li><b>Explainability</b> — can the student see <i>why</i> a course was recommended, in terms they can evaluate and trust?</li>
+<li><b>Steerability</b> — can the student adjust how much each signal (goal fit, skill gap, grading history, schedule, cost) matters to them personally, rather than accepting one fixed formula?</li>
+</ul>
+<div class="callout">
+Learnix treats these as first-class requirements rather than afterthoughts: every recommendation
+score decomposes into named subscores with plain-language reasons, and every subscore's weight is
+a value the student owns and can change at any time from Settings.
+</div>
+</section>
+
+<!-- Objectives -->
+<section>
+<h1 class="section-title">3. Objectives</h1>
+<ol>
+<li>Design a content-based scoring model that ranks courses against a student's career-goal skill profile without requiring historical interaction data.</li>
+<li>Derive a student's current skill level purely from their confirmed academic transcript, so it can never be fabricated or go stale.</li>
+<li>Decompose every recommendation score into explainable subscores (goal fit, skill gap closed, grading history, schedule fit, cost) with plain-language reasons.</li>
+<li>Let the student steer the ranking by adjusting the relative weight of each subscore.</li>
+<li>Detect and surface real-world constraints — unmet prerequisites, schedule conflicts, weekly time-budget overruns — before a course is ever recommended.</li>
+<li>Persist every piece of student state (career goal, interests, weights, saved/hidden courses, transcript, notification settings) server-side, so the experience is consistent across devices and sessions.</li>
+<li>Build a production-shaped system: typed end-to-end, unit-tested scoring engine, a real relational schema, and a caching strategy that keeps the app responsive under real network latency.</li>
+</ol>
+</section>
+
+<!-- Tech stack -->
+<section>
+<h1 class="section-title">4. Technology Stack</h1>
+<table>
+<tr><th>Layer</th><th>Technology</th><th>Why</th></tr>
+<tr><td>Framework</td><td>Next.js 16 (App Router, Turbopack)</td><td>Server Components for data-heavy screens, file-system routing, built-in caching primitives.</td></tr>
+<tr><td>Language</td><td>TypeScript (strict)</td><td>End-to-end type safety from the database to the UI.</td></tr>
+<tr><td>UI</td><td>React 19, Tailwind CSS v4, Framer Motion</td><td>Component-driven UI; utility-first styling via a design-token theme layer; accessible, reduced-motion-aware entrance animation.</td></tr>
+<tr><td>Database</td><td>PostgreSQL</td><td>Relational integrity for transcripts, prerequisites and per-student state; survives redeploys on serverless hosts (unlike SQLite).</td></tr>
+<tr><td>ORM</td><td>Prisma</td><td>Type-safe schema, migrations, and query layer.</td></tr>
+<tr><td>Auth</td><td>Auth.js (NextAuth v5), Credentials provider + bcrypt</td><td>Session-based auth with edge-safe route protection via middleware.</td></tr>
+<tr><td>Validation</td><td>Zod</td><td>Runtime-validated form input on every server action.</td></tr>
+<tr><td>Client state</td><td>Zustand</td><td>The one piece of genuinely client-only state — the toast/undo pattern.</td></tr>
+<tr><td>Testing</td><td>Vitest + Testing Library</td><td>Unit tests for the scoring engine's pure functions.</td></tr>
+</table>
+<div class="chip-row">
+<span class="chip">Next.js 16</span><span class="chip">TypeScript</span><span class="chip">React 19</span>
+<span class="chip">Tailwind v4</span><span class="chip">PostgreSQL</span><span class="chip">Prisma</span>
+<span class="chip">Auth.js v5</span><span class="chip">Zod</span><span class="chip">Zustand</span>
+<span class="chip">Framer Motion</span><span class="chip">Vitest</span>
+</div>
+</section>
+
+<!-- Architecture -->
+<section>
+<h1 class="section-title">5. System Architecture</h1>
+<p>
+Learnix follows a layered server-first architecture. React Server Components fetch data directly
+from Prisma at render time — there is no separate REST/GraphQL API layer for the main app, which
+removes an entire class of client/server drift bugs. State-changing operations go through typed
+Next.js Server Actions, which validate input with Zod, write through Prisma, and trigger targeted
+cache revalidation.
+</p>
+<h2>5.1 Layer responsibilities</h2>
+<table>
+<tr><th>Module</th><th>Responsibility</th></tr>
+<tr><td><code>lib/scoring/</code></td><td>The recommendation engine itself — skill vectors, subscore formulas, weighted ranking, band classification, reason generation, exclusion and schedule-conflict detection. Pure functions with no framework or database dependency, fully unit-tested.</td></tr>
+<tr><td><code>lib/data/repository.ts</code></td><td>The single seam between the app and Postgres. Every read and write in the system passes through here, mapped into the plain shapes the scoring engine expects.</td></tr>
+<tr><td><code>lib/store/useToastStore.ts</code></td><td>The one client-only piece of state (toast + undo); everything else that matters is persisted server-side per student.</td></tr>
+<tr><td><code>auth.ts</code> / <code>lib/auth.config.ts</code> / <code>proxy.ts</code></td><td>Auth.js v5 session management, with an edge-safe config used by the proxy for route protection before a request ever reaches a page.</td></tr>
+<tr><td><code>prisma/schema.prisma</code></td><td>The full relational schema — see Section 6.</td></tr>
+<tr><td><code>app/(app)/</code></td><td>The authenticated app shell: top navigation plus all nine student-facing screens, gated both at the edge (middleware) and in the route group's own layout.</td></tr>
+<tr><td><code>app/onboarding/</code></td><td>A four-step wizard, deliberately rendered outside the app shell so nothing distracts a new student from setup.</td></tr>
+</table>
+<h2>5.2 Request flow</h2>
+<p>
+A typical page request — say, opening Home — resolves the session, confirms the student has
+completed onboarding, then fetches the course catalogue, the student's scoring context (skills,
+weights, saved/hidden courses, schedule constraints) and recent notifications <i>in parallel</i>
+rather than sequentially. The scoring engine runs synchronously over that data to rank courses, and
+the result streams to the browser as server-rendered HTML.
+</p>
+</section>
+
+<!-- Database -->
+<section>
+<h1 class="section-title">6. Database Design</h1>
+<p>
+The schema is fully relational and normalized. Degree-requirement progress and GPA are
+<b>deliberately not stored</b> — they are derived at query time from the confirmed transcript, so
+they can never go stale or be hand-edited into an inconsistent state.
+</p>
+<table>
+<tr><th>Model</th><th>Purpose</th></tr>
+<tr><td>User</td><td>Account identity, program and year.</td></tr>
+<tr><td>Profile</td><td>Career goal, interests, weekly hour budget, unavailable days, onboarding status.</td></tr>
+<tr><td>WeightsProfile</td><td>The five student-adjustable subscore weights.</td></tr>
+<tr><td>NotificationSettings</td><td>Per-student notification preferences.</td></tr>
+<tr><td>Career</td><td>Career target skill vectors courses are scored against.</td></tr>
+<tr><td>Course / Instructor / Review</td><td>The catalogue — skill vectors, schedule, base subscores, prerequisites, syllabus, assessment breakdown, reviews.</td></tr>
+<tr><td>ProgramRequirement</td><td>Degree-requirement credit buckets per program.</td></tr>
+<tr><td>TranscriptEntry</td><td>A student's actual academic history — the only source of their current skill level.</td></tr>
+<tr><td>SavedCourse / HiddenCourse</td><td>Per-student shortlist and exclusion state.</td></tr>
+<tr><td>Notification / NotificationRead</td><td>System-wide notices and per-student read status.</td></tr>
+</table>
+</section>
+
+<!-- Algorithm -->
+<section>
+<h1 class="section-title">7. The Recommendation Algorithm</h1>
+<p>
+Learnix is a <b>content-based, multi-criteria recommender</b>. Every course carries a skill vector
+across five axes (<code>ml</code>, <code>stat</code>, <code>sys</code>, <code>alg</code>,
+<code>prac</code>); every career target carries the same vector. A course's match score for a
+student is computed live, in three stages.
+</p>
+<h2>7.1 Subscores (0–99 each)</h2>
+<ul>
+<li><b>goals</b> — similarity between the course's skill vector and the career target (a weighted cosine-style match), plus a small bonus if a stated interest appears in the course title or description.</li>
+<li><b>gap</b> — the same similarity, weighted by how far the student's <i>current</i> skills — derived only from confirmed transcript courses, never an invented baseline — fall short of the target. A course that closes a bigger, more-numerous skill gap scores higher than one that merely repeats a skill the student already has.</li>
+<li><b>history</b> — a base score, halved if a prerequisite the catalogue can check has not been confirmed on the student's transcript.</li>
+<li><b>schedule</b> — a base score, discounted if the course alone would consume an outsized share of the student's declared weekly time budget.</li>
+<li><b>cost</b> — a fixed credit-value score.</li>
+</ul>
+<h2>7.2 Weighted match percentage</h2>
+<p>
+The five subscores combine as <code>Σ(subscore × weight) / Σweight</code>. Weights are normalised
+on every read, so a student's sliders never need to sum to 100 — they can lean entirely on
+"goals" and "gap," or spread evenly, and the formula adapts. Three qualitative bands are shown to
+the student: <b>≥ 85 → "Great fit"</b>, <b>≥ 72 → "Good fit"</b>, otherwise <b>"Okay fit."</b>
+</p>
+<h2>7.3 Explanation</h2>
+<p>
+The top-contributing signals for a course are mapped to a plain-language reason — e.g. <i>"It
+builds machine learning, which your goal needs"</i> or <i>"You'll need a confirmed grade in Linear
+Algebra, its prerequisite"</i> — shown as the course's "why it fits you" text everywhere it
+appears, not just on a dedicated detail page.
+</p>
+<h2>7.4 Exclusion and conflicts</h2>
+<p>
+Hidden courses and courses that fall on a day the student has declared unavailable are removed
+<i>before</i> ranking, not scored low and left to clutter the list. Saved courses are checked
+pairwise for day/time overlap, so a student planning their term sees a conflict the moment it
+would happen, not after registering.
+</p>
+<p>
+This entire pipeline is implemented as pure functions in <code>lib/scoring/</code>, independent of
+React or the database, and is unit-tested directly (<code>lib/scoring/score.test.ts</code>,
+27 passing tests covering subscore formulas, ranking, band classification and conflict detection).
+</p>
+</section>
+
+<!-- Screens -->
+<section>
+<h1 class="section-title">8. Application Walkthrough</h1>
+
+<h2>8.1 Home</h2>
+<p>
+The student's single best-match course is shown as a hero card with its match percentage, "great
+fit" band, and plain-language reasons, plus a rail of the next six best alternatives. A quick-stats
+row surfaces days until the registration deadline, the student's single biggest remaining skill
+gap, and total saved hours against their weekly budget.
+</p>
+<img class="shot" src="assets/03-home.png">
+<div class="shot-caption">Home — hero recommendation, quick-glance stats.</div>
+
+<h2>8.2 Explore</h2>
+<p>
+Every eligible course, ranked, with live filters for department, meeting day, and maximum weekly
+hours, and three sort modes: best match, highest rated, lightest workload.
+</p>
+<img class="shot" src="assets/04-explore.png">
+<div class="shot-caption">Explore — full catalogue, filterable and sortable.</div>
+
+<h2>8.3 Course Detail</h2>
+<p>
+A single course's full breakdown: subscore-by-subscore reasoning, instructor profile, syllabus,
+assessment weighting, and student reviews — plus the course's rank among every other eligible
+course for that student specifically.
+</p>
+<img class="shot" src="assets/05-course-detail.png">
+<div class="shot-caption">Course detail — full score breakdown and reasoning.</div>
+
+<h2>8.4 Compare</h2>
+<p>Two courses side by side across schedule, workload, rating and skill-vector fit, for a student deciding between finalists.</p>
+<img class="shot" src="assets/06-compare.png">
+<div class="shot-caption">Compare — side-by-side course comparison.</div>
+
+<h2>8.5 Progress</h2>
+<p>Degree-requirement completion per category, current GPA, and the student's biggest remaining skill gap — all derived live from the transcript, never stored.</p>
+<img class="shot" src="assets/07-progress.png">
+<div class="shot-caption">Progress — degree requirements, GPA, skill gaps.</div>
+
+<h2>8.6 Saved</h2>
+<p>The student's shortlist for next term, with a live running total of weekly hours against their declared budget.</p>
+<img class="shot" src="assets/08-saved.png">
+<div class="shot-caption">Saved — shortlisted courses with a live hours total.</div>
+
+<h2>8.7 Settings</h2>
+<p>The five subscore weights as adjustable sliders — the steerability mechanism described in Section 7 — alongside career/interest preferences, notification settings, accessibility options, and hidden-course management.</p>
+<img class="shot" src="assets/09-settings.png">
+<div class="shot-caption">Settings — steerable ranking weights and preferences.</div>
+
+<h2>8.8 Updates</h2>
+<p>Registration deadlines, seat-availability alerts, and new-course notices, with read/unread state persisted per student.</p>
+<img class="shot" src="assets/10-updates.png">
+<div class="shot-caption">Updates — deadlines and course-catalogue notifications.</div>
+</section>
+
+<!-- Design system -->
+<section>
+<h1 class="section-title">9. Design System</h1>
+<p>
+Learnix uses a desktop-first "Salt &amp; pepper + Gothic noir" visual language — a warm off-white
+(<code>#F5F4F1</code>) background through a deep oxblood accent (<code>#7A1F2B</code>) — with
+Archivo for headings/body and Space Mono for small uppercase labels, 28px tile radii, and fully
+pill-shaped buttons, chips and toasts. Design tokens live in a Tailwind v4 <code>@theme</code>
+layer so every screen draws from the same palette. Entrance and ambient motion use Framer Motion,
+respect <code>prefers-reduced-motion</code>, and never hide content if a script fails to load —
+server-rendered content is always visible first, animation is purely additive.
+</p>
+</section>
+
+<!-- Performance -->
+<section>
+<h1 class="section-title">10. Performance Engineering</h1>
+<p>
+Every data-fetching function in <code>lib/data/repository.ts</code> is wrapped in React's
+<code>cache()</code> so repeated calls within a single request are memoized. Catalogue data
+(courses, careers) and per-student data (profile, saved/hidden courses, weights, transcript,
+notifications) that is shared or slow-changing is additionally wrapped in Next.js's
+<code>unstable_cache</code>, giving it a short cross-request lifetime — critical because the
+production database is a pooled remote Postgres instance, and without this layer, screens that
+every page touches (like the top navigation's unread-notification count) would re-issue a network
+round trip on every single navigation. Every mutation (saving a course, adjusting a weight,
+confirming a transcript entry) calls targeted cache revalidation so the student always sees their
+own change immediately, never a stale cached value.
+</p>
+</section>
+
+<!-- Testing -->
+<section>
+<h1 class="section-title">11. Testing</h1>
+<p>
+The scoring engine — the correctness-critical core of the system — is covered by 27 unit tests
+(Vitest) exercising subscore formulas, weighted ranking, band classification, exclusion filtering,
+and schedule-conflict detection in isolation from the database and UI. The codebase is additionally
+checked with strict TypeScript compilation and ESLint on every change.
+</p>
+</section>
+
+<!-- Conclusion -->
+<section>
+<h1 class="section-title">12. Conclusion &amp; Future Scope</h1>
+<p>
+Learnix demonstrates that a content-based recommender can be both rigorous and legible: every
+ranking decision traces back to a named, student-adjustable signal, and nothing is presented
+without a plain-language reason. By deriving skill level strictly from a confirmed transcript and
+letting students steer the algorithm themselves, the system avoids both the cold-start problem of
+collaborative filtering and the opacity of black-box ranking.
+</p>
+<p>Future extensions under consideration include:</p>
+<ul>
+<li>A greedy multi-term degree planner (prototyped in <code>lib/data/path.ts</code>) that sequences courses across future terms by prerequisite topology and credit/hour budget.</li>
+<li>Instructor- and section-level historical grade-distribution signals, where institutional data permits.</li>
+<li>Collaborative signals (e.g. "students with a similar transcript also took...") layered <i>on top of</i> the existing explainable base, rather than replacing it.</li>
+<li>A mobile-optimized layout for on-the-go registration-period use.</li>
+</ul>
+</section>
+
+</body>
+</html>
